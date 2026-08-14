@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libas Atelier Hub</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #0d0d0d; padding: 15px; text-align: center; margin: 0; }
+        .container { max-width: 410px; margin: 10px auto; background: #1a1a1a; padding: 25px; border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); border: 1px solid #333; }
+        .brand-header { margin-top: 0; color: #ffffff; font-size: 26px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .brand-sub { font-size: 11px; color: #d4af37; text-transform: uppercase; letter-spacing: 3px; margin-top: -5px; margin-bottom: 20px; font-weight: bold; }
+        
+        /* Interactive Catalog Display Box */
+        .preview-box { position: relative; width: 100%; max-width: 290px; height: 400px; margin: 15px auto 25px auto; border-radius: 18px; border: 1px solid #333; overflow: hidden; background-color: #ffffff; }
+        .preview-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .product-title { font-size: 14px; font-weight: bold; color: #ffffff; margin-bottom: 20px; letter-spacing: 0.5px; text-transform: uppercase; }
+        
+        /* Universal Force-Selling Button */
+        .cart-btn { background: #ff4757; color: #ffffff; border: none; width: 100%; padding: 16px; font-size: 15px; font-weight: bold; border-radius: 14px; cursor: pointer; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); }
+        
+        /* Proforma Modal Pop-up */
+        .popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center; }
+        .proforma-card { background: #1a1a1a; color: #ffffff; width: 90%; max-width: 370px; padding: 25px; border-radius: 22px; text-align: left; border: 1px solid #333; }
+        .form-field { margin-bottom: 16px; }
+        label { display: block; font-weight: 700; margin-bottom: 6px; font-size: 13px; color: #d4af37; }
+        input, textarea { width: 100%; padding: 12px; border: 1px solid #333; background: #1a1a1a; color: #ffffff; border-radius: 10px; box-sizing: border-box; font-size: 14px; outline: none; }
+        .submit-order-btn { background: #25D366; color: white; border: none; width: 100%; padding: 15px; font-size: 16px; font-weight: bold; border-radius: 10px; cursor: pointer; margin-top: 10px; width: 100%; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- YOUR ACTUAL BRAND NAME -->
+    <h1 class="brand-header">LIBAS ATELIER</h1>
+    <div class="brand-sub">Luxury Catalog Hub</div>
+    
+    <div id="canvasFrame" class="preview-box">
+        <img id="displayImage" src="" alt="Loading Collection Design...">
+    </div>
+
+    <div class="product-title" id="itemLabel">Checking Code...</div>
+    <button class="cart-btn" onclick="showProforma()">🛍️ Order This Suit Now</button>
+</div>
+
+<!-- SHIPPING PROFORMA POPUP -->
+<div id="orderModal" class="popup-overlay">
+    <div class="proforma-card">
+        <h3 style="margin-top:0; font-size: 18px; color: #ffffff;">📋 LIBAS ATELIER PROFORMA</h3>
+        <p style="font-size:12px; color: #d4af37; margin-top:-8px;">Lock in your delivery address to complete your order.</p>
+        
+        <div class="form-field">
+            <label>Full Name:</label>
+            <input type="text" id="clientName" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-field">
+            <label>Cell Phone / WhatsApp Number:</label>
+            <input type="tel" id="clientPhone" placeholder="e.g., 03001234567" required>
+        </div>
+        <div class="form-field">
+            <label>Complete Delivery Address:</label>
+            <textarea id="clientAddress" rows="3" placeholder="House number, Street, Area, City" required></textarea>
+        </div>
+        <div class="form-field">
+            <label>Sizing Notes / Cutting yards (Optional):</label>
+            <textarea id="orderNotes" rows="2" placeholder="Height preferences or unstitched details..."></textarea>
+        </div>
+
+        <button class="submit-order-btn" onclick="dispatchOrder()">🚀 Submit Order via WhatsApp</button>
+        <button style="background:none; border:none; color: #d4af37; width:100%; margin-top:12px; cursor:pointer; font-size:12px;" onclick="hideProforma()">Go Back</button>
+    </div>
+</div>
+
+<script>
+    const plainColorDatabase = {
+        "navy-blue": "#0020C2", "emerald-green": "#50C878", "maroon": "#800000",
+        "mustard": "#FFDB58", "jet-black": "#111111", "ruby-red": "#E0115F"
+    };
+
+    let activeSkuCode = "ATELIER-ITEM";
+
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const designParam = urlParams.get('design'); // For Printed/Catalog Suits (e.g. ?design=atelier001)
+        const plainParam = urlParams.get('fabric');  // For Plain Fabrics (e.g. ?fabric=maroon)
+        
+        const canvasElement = document.getElementById('canvasFrame');
+        const imgElement = document.getElementById('displayImage');
+        const labelElement = document.getElementById('itemLabel');
+
+        if (designParam) {
+            imgElement.src = `${designParam.toLowerCase()}.jpg`;
+            imgElement.style.objectFit = "cover";
+            canvasElement.style.backgroundColor = "#ffffff";
+            activeSkuCode = designParam.toUpperCase();
+            labelElement.innerHTML = `🔎 CODE: <b>${activeSkuCode}</b>`;
+        } else if (plainParam && plainColorDatabase[plainParam.toLowerCase()]) {
+            imgElement.src = "ladies-silhouette.png";
+            imgElement.style.objectFit = "contain";
+            canvasElement.style.backgroundColor = plainColorDatabase[plainParam.toLowerCase()];
+            activeSkuCode = `ATELIER-${plainParam.toUpperCase()}`;
+            labelElement.innerHTML = `🎨 CODE: <b>${activeSkuCode}</b>`;
+        } else {
+            imgElement.src = "default-preview.jpg";
+            labelElement.innerHTML = "✨ Welcome to Libas Atelier";
+        }
+    };
+
+    function showProforma() { document.getElementById('orderModal').style.display = 'flex'; }
+    function hideProforma() { document.getElementById('orderModal').style.display = 'none'; }
+
+    function dispatchOrder() {
+        const name = document.getElementById('clientName').value;
+        const phone = document.getElementById('clientPhone').value;
+        const addr = document.getElementById('clientAddress').value;
+        const notes = document.getElementById('orderNotes').value;
+
+        if(!name || !phone || !addr) { alert("Please fill out all required fields."); return; }
+
+        // ==================================================================
+        // 🚨 CONFIGURATION NOTE: PASTE YOUR REAL NEW PHONE NUMBER BELOW!
+        // Include country code '92' at the start. Do not add any '+' or zeroes.
+        // Example for number 03001234567: const STORE_WHATSAPP_LINE = "923001234567";
+        // ==================================================================
+        const STORE_WHATSAPP_LINE = "923038710292"; 
+
+        const finalMessage = `🛍️ *NEW INBOUND ORDER - LIBAS ATELIER* 🛍️\n\n` +
+                             `痕 *Design Code:* ${activeSkuCode}\n` +
+                             `👤 *Customer Name:* ${name}\n` +
+                             `📞 *Contact Number:* ${phone}\n` +
+                             `📍 *Delivery Address:* ${addr}\n` +
+                             `📝 *Notes:* ${notes || 'None'}`;
+
+        window.open("https://wa.me" + STORE_WHATSAPP_LINE + "?text=" + encodeURIComponent(finalMessage), '_blank');
+    }
+</script>
+</body>
+</html>
