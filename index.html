@@ -31,6 +31,7 @@
 <body>
 
 <div class="container">
+    <!-- YOUR ACTUAL BRAND NAME -->
     <h1 class="brand-header">LIBAS ATELIER</h1>
     <div class="brand-sub">Luxury Catalog Hub</div>
     
@@ -80,8 +81,8 @@
 
     window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
-        const designParam = urlParams.get('design'); 
-        const plainParam = urlParams.get('fabric');  
+        const designParam = urlParams.get('design'); // For Printed/Catalog Suits (e.g. ?design=atelier001)
+        const plainParam = urlParams.get('fabric');  // For Plain Fabrics (e.g. ?fabric=maroon)
         
         const canvasElement = document.getElementById('canvasFrame');
         const imgElement = document.getElementById('displayImage');
@@ -116,6 +117,11 @@
 
         if(!name || !phone || !addr) { alert("Please fill out all required fields."); return; }
 
+        // ==================================================================
+        // 🚨 CONFIGURATION NOTE: PASTE YOUR REAL NEW PHONE NUMBER BELOW!
+        // Include country code '92' at the start. Do not add any '+' or zeroes.
+        // Example for number 03001234567: const STORE_WHATSAPP_LINE = "923001234567";
+        // ==================================================================
         const STORE_WHATSAPP_LINE = "923038710292"; 
 
         const finalMessage = `🛍️ *NEW INBOUND ORDER - LIBAS ATELIER* 🛍️\n\n` +
@@ -125,7 +131,6 @@
                              `📍 *Delivery Address:* ${addr}\n` +
                              `📝 *Notes:* ${notes || 'None'}`;
 
-        // Fixed the missing slash here: changed "https://wa.me" to "https://wa.me"
         window.open("https://wa.me" + STORE_WHATSAPP_LINE + "?text=" + encodeURIComponent(finalMessage), '_blank');
     }
 </script>
