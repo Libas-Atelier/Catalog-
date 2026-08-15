@@ -52,7 +52,7 @@ jobs:
             - name: Save generated catalog
         run: |
           mkdir -p catalog-output
-          cp catalog.md catalog-output/
+          cp generated-catalog/catalog.md catalog-output/
           cp LA-*.jpg catalog-output/ 2>/dev/null || true
           cp LA-*.jpeg catalog-output/ 2>/dev/null || true
 
