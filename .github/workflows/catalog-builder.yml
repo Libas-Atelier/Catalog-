@@ -4,57 +4,148 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build-catalog:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Get repository files
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Build product catalog
         shell: bash
         run: |
           set -e
 
-          mkdir -p generated-catalog
-
-          echo "# LIBAS ATELIER" > generated-catalog/catalog.md
-          echo "" >> generated-catalog/catalog.md
-          echo "## Luxury Catalog Hub" >> generated-catalog/catalog.md
-          echo "" >> generated-catalog/catalog.md
+          rm -rf catalog-output
+          mkdir -p catalog-output
 
           found=0
 
-          for file in *.{jpg,jpeg,JPG,JPEG}; do
+          cat > catalog-output/catalog.html <<'HTML'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>LIBAS ATELIER — Luxury Catalog Hub</title>
+
+            <style>
+              * {
+                box-sizing: border-box;
+              }
+
+              body {
+                margin: 0;
+                padding: 24px;
+                background: #111;
+                color: #fff;
+                font-family: Arial, Helvetica, sans-serif;
+              }
+
+              .container {
+                max-width: 1100px;
+                margin: auto;
+              }
+
+              h1 {
+                font-size: clamp(36px, 7vw, 72px);
+                margin: 0 0 10px;
+                letter-spacing: 2px;
+              }
+
+              .subtitle {
+                font-size: clamp(24px, 4vw, 42px);
+                font-weight: 700;
+                margin-bottom: 45px;
+              }
+
+              .product {
+                margin-bottom: 50px;
+                padding-bottom: 40px;
+                border-bottom: 2px solid #444;
+              }
+
+              .product h2 {
+                font-size: clamp(28px, 5vw, 48px);
+                margin: 0 0 20px;
+              }
+
+              .product img {
+                display: block;
+                width: 100%;
+                max-width: 900px;
+                height: auto;
+                margin: auto;
+                border-radius: 12px;
+              }
+
+              .count {
+                font-size: 24px;
+                font-weight: 700;
+                margin-top: 35px;
+              }
+            </style>
+          </head>
+
+          <body>
+            <div class="container">
+
+              <h1>LIBAS ATELIER</h1>
+
+              <div class="subtitle">
+                Luxury Catalog Hub
+              </div>
+          HTML
+
+          for file in LA-*.jpg LA-*.jpeg LA-*.JPG LA-*.JPEG; do
             [ -f "$file" ] || continue
 
             sku="${file%.*}"
 
-            echo "## $sku" >> generated-catalog/catalog.md
-            echo "" >> generated-catalog/catalog.md
-            echo "![${sku}](${file})" >> generated-catalog/catalog.md
-            echo "" >> generated-catalog/catalog.md
-            echo "---" >> generated-catalog/catalog.md
-            echo "" >> generated-catalog/catalog.md
+            case "${file##*.}" in
+              jpg|JPG)
+                mime="image/jpeg"
+                ;;
+              jpeg|JPEG)
+                mime="image/jpeg"
+                ;;
+              *)
+                continue
+                ;;
+            esac
 
             echo "Found product: $sku"
+
+            {
+              echo "<section class=\"product\">"
+              echo "<h2>$sku</h2>"
+              echo "<img src=\"data:$mime;base64,"
+              base64 -w 0 "$file"
+              echo "\" alt=\"$sku\">"
+              echo "</section>"
+            } >> catalog-output/catalog.html
+
+            cp "$file" catalog-output/
+
             found=$((found + 1))
           done
 
-          echo "" >> generated-catalog/catalog.md
-          echo "**Products detected: $found**" >> generated-catalog/catalog.md
+          cat >> catalog-output/catalog.html <<HTML
+
+              <div class="count">
+                Products detected: $found
+              </div>
+
+            </div>
+          </body>
+          </html>
+          HTML
 
           echo "TOTAL PRODUCTS DETECTED: $found"
-
-      - name: Save generated catalog 
-        run: |
-          mkdir -p catalog-output
-          cp generated-catalog/catalog.md catalog-output/
-          cp LA-*.jpg catalog-output/ 2>/dev/null || true
-          cp LA-*.jpeg catalog-output/ 2>/dev/null || true
 
       - name: Upload catalog package
         uses: actions/upload-artifact@v4
