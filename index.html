@@ -6,7 +6,9 @@
 <title>LIBAS ATELIER</title>
 
 <style>
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 html, body {
     margin: 0;
@@ -21,6 +23,8 @@ body {
     text-align: center;
     padding: 15px;
 }
+
+/* ================= MAIN SCREEN ================= */
 
 .container {
     width: 100%;
@@ -93,6 +97,8 @@ body {
     cursor: pointer;
 }
 
+/* ================= PROFORMA ================= */
+
 .popup-overlay {
     display: none;
     position: fixed;
@@ -132,6 +138,8 @@ body {
     line-height: 1.5;
 }
 
+/* ================= FORM ================= */
+
 .form-field {
     margin-bottom: 15px;
 }
@@ -168,6 +176,8 @@ textarea:focus {
     font-size: 10px;
     line-height: 1.4;
 }
+
+/* ================= SETTINGS ================= */
 
 .settings-box {
     margin: 8px 0 18px;
@@ -249,6 +259,8 @@ textarea:focus {
     text-align: center;
 }
 
+/* ================= SUMMARY ================= */
+
 .order-summary {
     margin: 5px 0 17px;
     padding: 13px 0;
@@ -302,6 +314,8 @@ textarea:focus {
     color: #25D366;
 }
 
+/* ================= IMPORTANT NOTE ================= */
+
 .customer-note {
     margin-top: 15px;
     padding: 10px 5px 0;
@@ -310,9 +324,19 @@ textarea:focus {
     line-height: 1.55;
 }
 
-.customer-note strong {
+.important-heading {
+    margin-bottom: 10px;
     color: #d4af37;
+    font-size: 13px;
+    font-weight: 900;
+    text-align: center;
 }
+
+.customer-note-text {
+    text-align: left;
+}
+
+/* ================= SEND ================= */
 
 .submit-order-btn {
     width: 100%;
@@ -349,6 +373,8 @@ textarea:focus {
 
 <body>
 
+<!-- ================= MAIN PRODUCT SCREEN ================= -->
+
 <div class="container">
 
     <h1 class="brand-header">
@@ -360,7 +386,11 @@ textarea:focus {
     </div>
 
     <div id="canvasFrame" class="preview-box">
-        <img id="displayImage" src="" alt="Libas Atelier Collection">
+        <img
+            id="displayImage"
+            src=""
+            alt="Libas Atelier Collection"
+        >
     </div>
 
     <div id="itemLabel" class="product-title">
@@ -378,6 +408,8 @@ textarea:focus {
 </div>
 
 
+<!-- ================= PROFORMA ================= -->
+
 <div id="orderModal" class="popup-overlay">
 
     <div class="proforma-card">
@@ -392,6 +424,8 @@ textarea:focus {
             method.
         </p>
 
+
+        <!-- NAME -->
 
         <div class="form-field">
 
@@ -408,6 +442,8 @@ textarea:focus {
 
         </div>
 
+
+        <!-- MOBILE -->
 
         <div class="form-field">
 
@@ -428,6 +464,8 @@ textarea:focus {
 
         </div>
 
+
+        <!-- WHATSAPP -->
 
         <div class="form-field">
 
@@ -450,6 +488,8 @@ textarea:focus {
         </div>
 
 
+        <!-- ADDRESS -->
+
         <div class="form-field">
 
             <label>
@@ -465,6 +505,8 @@ textarea:focus {
 
         </div>
 
+
+        <!-- METERS -->
 
         <div class="form-field">
 
@@ -487,6 +529,8 @@ textarea:focus {
         </div>
 
 
+        <!-- NOTES -->
+
         <div class="form-field">
 
             <label>
@@ -501,6 +545,8 @@ textarea:focus {
 
         </div>
 
+
+        <!-- SETTINGS -->
 
         <details class="settings-box">
 
@@ -607,6 +653,8 @@ textarea:focus {
         </details>
 
 
+        <!-- SUMMARY -->
+
         <div class="order-summary">
 
             <div class="summary-row">
@@ -689,19 +737,26 @@ textarea:focus {
         </div>
 
 
+        <!-- IMPORTANT NOTE -->
+
         <div class="customer-note">
 
-            ⭐ <strong>IMPORTANT:</strong><br>
+            <div class="important-heading">
+                ⭐ IMPORTANT ⭐
+            </div>
 
-            <strong>
+            <div class="customer-note-text">
                 On payment of the Serious Customer Token,
-                your order will be dispatched. The token
-                amount will be deducted from the total
-                payable amount when you receive your parcel. 📦
-            </strong>
+                your order will be dispatched.
+                The token amount will be deducted from the
+                total payable amount when you receive your
+                parcel. 📦
+            </div>
 
         </div>
 
+
+        <!-- SEND -->
 
         <button
             type="button"
@@ -748,7 +803,7 @@ const STORE_SMS_LINE = "923038710292";
 
 
 /* =====================================================
-   FORMAT RUPEES
+   RUPEE FORMAT
    ===================================================== */
 
 function formatRupees(value) {
@@ -801,7 +856,7 @@ function storageKey(type) {
 
 
 /* =====================================================
-   LOAD SETTINGS
+   LOAD SAVED SETTINGS
    ===================================================== */
 
 function loadSavedPricing() {
@@ -894,7 +949,9 @@ function savePricingSettings() {
 
     setTimeout(
         function() {
+
             status.style.display = "none";
+
         },
         2200
     );
@@ -1077,6 +1134,7 @@ function showProforma() {
 
 }
 
+
 function hideProforma() {
 
     document.getElementById(
@@ -1229,10 +1287,17 @@ function dispatchOrder() {
 
 
     /* =================================================
-       FINAL ORDER MESSAGE
+       ORDER MESSAGE
 
-       The final token instruction is deliberately
-       surrounded by WhatsApp's bold markdown markers.
+       IMPORTANT:
+       The ⭐ IMPORTANT ⭐ line is deliberately separated
+       from the explanatory text.
+
+       WhatsApp receives this as a clean separated
+       heading.
+
+       SMS receives the same structure without
+       WhatsApp markdown symbols.
        ================================================= */
 
     const orderMessage =
@@ -1304,10 +1369,14 @@ function dispatchOrder() {
 
         "\n\n" +
 
-        "⭐ *IMPORTANT: On payment of the Serious Customer Token, " +
-        "your order will be dispatched. The token amount will be " +
-        "deducted from the total payable amount when you receive " +
-        "your parcel. 📦*";
+        "⭐ IMPORTANT ⭐\n\n" +
+
+        "On payment of the Serious Customer Token, " +
+        "your order will be dispatched.\n\n" +
+
+        "The token amount will be deducted from the " +
+        "total payable amount when you receive your " +
+        "parcel. 📦";
 
 
     /* =================================================
