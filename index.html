@@ -3,133 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LIBAS ATELIER Hub</title>
+
+<title>LIBAS ATELIER</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
 
+html,
 body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #0d0d0d;
-    padding: 15px;
-    text-align: center;
     margin: 0;
-    color: #ffffff;
+    padding: 0;
+    min-height: 100%;
 }
 
+body {
+    background: #0d0d0d;
+    color: #ffffff;
+    font-family: "Segoe UI", Arial, sans-serif;
+    text-align: center;
+    padding: 15px;
+}
+
+
+/* =====================================================
+   MAIN PRODUCT CARD
+   ===================================================== */
+
 .container {
+    width: 100%;
     max-width: 410px;
     margin: 10px auto;
+
     background: #1a1a1a;
-    padding: 25px;
-    border-radius: 24px;
-    box-shadow: 0 15px 40px rgba(0,0,0,.5);
+
     border: 1px solid #333;
+    border-radius: 24px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.5);
 }
+
+
+/* =====================================================
+   BRAND
+   ===================================================== */
 
 .brand-header {
     margin: 0;
+
     color: #ffffff;
+
     font-size: 26px;
     font-weight: 700;
+
     letter-spacing: 2px;
+
     text-transform: uppercase;
 }
 
 .brand-sub {
-    font-size: 11px;
-    color: #d4af37;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-top: -5px;
+    margin-top: 7px;
     margin-bottom: 20px;
+
+    color: #d4af37;
+
+    font-size: 11px;
     font-weight: bold;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
 }
+
+
+/* =====================================================
+   PRODUCT IMAGE
+   ===================================================== */
 
 .preview-box {
     position: relative;
+
     width: 100%;
     max-width: 290px;
     height: 400px;
+
     margin: 15px auto 25px;
-    border-radius: 18px;
-    border: 1px solid #333;
+
     overflow: hidden;
+
     background: #ffffff;
+
+    border: 1px solid #333;
+    border-radius: 18px;
 }
 
 .preview-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+
     display: block;
+
+    object-fit: cover;
 }
+
+
+/* =====================================================
+   PRODUCT CODE
+   ===================================================== */
 
 .product-title {
-    font-size: 14px;
-    font-weight: bold;
-    color: #ffffff;
     margin-bottom: 20px;
-    letter-spacing: .5px;
-    text-transform: uppercase;
+
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
 }
+
+
+/* =====================================================
+   ORDER BUTTON
+   ===================================================== */
 
 .cart-btn {
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+    border-radius: 14px;
+
     background: #ff4757;
     color: #ffffff;
-    border: none;
-    width: 100%;
-    padding: 16px;
+
     font-size: 15px;
     font-weight: bold;
-    border-radius: 14px;
-    cursor: pointer;
-    text-transform: uppercase;
+
     letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* PROFORMA OVERLAY */
+
+/* =====================================================
+   MODAL
+   ===================================================== */
 
 .popup-overlay {
     display: none;
+
     position: fixed;
+
     inset: 0;
+
+    z-index: 1000;
+
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,.78);
-    z-index: 1000;
+
+    padding: 15px;
+
+    overflow-y: auto;
+
     align-items: center;
     justify-content: center;
-    padding: 15px;
-    overflow-y: auto;
+
+    background: rgba(0,0,0,.82);
 }
 
 .proforma-card {
-    background: #1a1a1a;
-    color: #ffffff;
     width: 100%;
     max-width: 390px;
-    padding: 25px;
-    border-radius: 22px;
-    text-align: left;
-    border: 1px solid #333;
+
     max-height: 94vh;
+
     overflow-y: auto;
+
+    padding: 25px;
+
+    background: #1a1a1a;
+
+    border: 1px solid #333;
+    border-radius: 22px;
+
+    color: #ffffff;
+
+    text-align: left;
 }
 
 .proforma-card h3 {
-    margin-top: 0;
+    margin: 0 0 10px;
+
     font-size: 20px;
 }
 
 .proforma-intro {
-    font-size: 12px;
+    margin: 0 0 20px;
+
     color: #d4af37;
-    margin-top: -8px;
-    margin-bottom: 20px;
+
+    font-size: 12px;
+
+    line-height: 1.5;
 }
+
+
+/* =====================================================
+   FORM
+   ===================================================== */
 
 .form-field {
     margin-bottom: 15px;
@@ -137,22 +229,30 @@ body {
 
 label {
     display: block;
-    font-weight: 700;
+
     margin-bottom: 6px;
-    font-size: 13px;
+
     color: #d4af37;
+
+    font-size: 13px;
+    font-weight: 700;
 }
 
 input,
 textarea {
     width: 100%;
+
     padding: 12px;
+
     border: 1px solid #333;
+    border-radius: 10px;
+
+    outline: none;
+
     background: #111111;
     color: #ffffff;
-    border-radius: 10px;
+
     font-size: 14px;
-    outline: none;
 }
 
 input:focus,
@@ -160,28 +260,73 @@ textarea:focus {
     border-color: #d4af37;
 }
 
-/* PRICE / DELIVERY SETTINGS */
+.helper-text {
+    margin-top: 5px;
+
+    color: #888888;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   SETTINGS
+   ===================================================== */
 
 .settings-box {
+    margin: 8px 0 18px;
+
+    padding: 15px;
+
     border: 1px solid #444;
     border-radius: 14px;
-    padding: 15px;
-    margin: 5px 0 18px;
+
     background: #121212;
 }
 
-.settings-title {
+.settings-box summary {
     color: #ffffff;
+
     font-size: 14px;
     font-weight: 700;
-    margin-bottom: 12px;
+
+    cursor: pointer;
+
+    list-style: none;
+}
+
+.settings-box summary::-webkit-details-marker {
+    display: none;
+}
+
+.settings-box summary::after {
+    content: "＋";
+
+    float: right;
+
+    color: #d4af37;
+
+    font-size: 18px;
+}
+
+.settings-box[open] summary::after {
+    content: "−";
+}
+
+.settings-content {
+    margin-top: 15px;
 }
 
 .settings-note {
-    color: #aaaaaa;
-    font-size: 11px;
-    line-height: 1.5;
     margin: 0 0 12px;
+
+    color: #aaaaaa;
+
+    font-size: 11px;
+
+    line-height: 1.5;
 }
 
 .currency-input {
@@ -190,11 +335,14 @@ textarea:focus {
 
 .currency-input span {
     position: absolute;
+
     left: 12px;
     top: 12px;
+
     color: #d4af37;
-    font-weight: 700;
+
     font-size: 14px;
+    font-weight: 700;
 }
 
 .currency-input input {
@@ -202,122 +350,261 @@ textarea:focus {
 }
 
 .save-settings-btn {
+    width: 100%;
+
+    margin-top: 4px;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 9px;
+
     background: #d4af37;
     color: #111111;
-    border: none;
-    width: 100%;
-    padding: 12px;
-    border-radius: 9px;
+
     font-size: 14px;
     font-weight: 800;
+
     cursor: pointer;
-    margin-top: 4px;
 }
 
 .saved-status {
     display: none;
-    color: #25D366;
-    font-size: 11px;
+
     margin-top: 8px;
+
+    color: #25D366;
+
+    font-size: 11px;
+
     text-align: center;
 }
 
-/* ORDER SUMMARY */
+
+/* =====================================================
+   SUMMARY
+   ===================================================== */
 
 .order-summary {
+    margin: 5px 0 17px;
+
+    padding: 13px 0;
+
     border-top: 1px solid #333;
     border-bottom: 1px solid #333;
-    padding: 13px 0;
-    margin: 5px 0 17px;
 }
 
 .summary-row {
     display: flex;
+
     justify-content: space-between;
+    align-items: center;
+
     gap: 15px;
-    margin: 7px 0;
+
+    margin: 9px 0;
+
     font-size: 13px;
 }
 
-.summary-row.total {
-    color: #25D366;
+.summary-row strong {
+    text-align: right;
+}
+
+.summary-row.gross-total {
+    margin-top: 13px;
+
+    padding-top: 11px;
+
+    border-top: 1px solid #333;
+
     font-size: 15px;
     font-weight: 800;
-    padding-top: 5px;
 }
+
+.summary-row.advance {
+    margin-top: 12px;
+
+    color: #d4af37;
+
+    font-weight: 700;
+}
+
+.summary-row.advance span,
+.summary-row.advance strong {
+    color: #d4af37;
+}
+
+.summary-row.net-total {
+    margin-top: 12px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #333;
+
+    color: #25D366;
+
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.summary-row.net-total span,
+.summary-row.net-total strong {
+    color: #25D366;
+}
+
+
+/* =====================================================
+   TOKEN NOTE
+   ===================================================== */
+
+.customer-note {
+    margin-top: 15px;
+
+    padding: 10px 5px 0;
+
+    color: #bbbbbb;
+
+    font-size: 11px;
+
+    line-height: 1.55;
+}
+
+.customer-note strong {
+    color: #d4af37;
+}
+
+
+/* =====================================================
+   WHATSAPP BUTTON
+   ===================================================== */
 
 .submit-order-btn {
+    width: 100%;
+
+    margin-top: 8px;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 10px;
+
     background: #25D366;
     color: #ffffff;
-    border: none;
-    width: 100%;
-    padding: 15px;
+
     font-size: 16px;
     font-weight: bold;
-    border-radius: 10px;
+
     cursor: pointer;
-    margin-top: 8px;
+
+    -webkit-tap-highlight-color: transparent;
 }
+
+
+/* =====================================================
+   BACK BUTTON
+   ===================================================== */
 
 .back-btn {
-    background: none;
-    border: none;
-    color: #d4af37;
     width: 100%;
+
     margin-top: 12px;
-    cursor: pointer;
+
+    padding: 5px;
+
+    border: none;
+
+    background: none;
+
+    color: #d4af37;
+
     font-size: 12px;
+
+    cursor: pointer;
 }
 
+
+/* =====================================================
+   FOOTER NOTE
+   ===================================================== */
+
 .setup-note {
-    font-size: 10px;
-    line-height: 1.45;
-    color: #888888;
     margin-top: 14px;
+
+    color: #777777;
+
+    font-size: 10px;
+
+    line-height: 1.45;
 }
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     MAIN SCREEN
+     ===================================================== -->
 
 <div class="container">
 
-    <h1 class="brand-header">LIBAS ATELIER</h1>
+
+    <h1 class="brand-header">
+        LIBAS ATELIER
+    </h1>
+
 
     <div class="brand-sub">
         Luxury Catalog Hub
     </div>
 
-    <div id="canvasFrame" class="preview-box">
+
+    <div
+        id="canvasFrame"
+        class="preview-box"
+    >
 
         <img
             id="displayImage"
             src=""
-            alt="Loading Collection Design..."
+            alt="Libas Atelier Collection"
         >
 
     </div>
 
+
+    <!-- IMPORTANT:
+         DEFAULT IS LA-001
+         NOT LIBAS ATELIER
+    -->
+
     <div
-        class="product-title"
         id="itemLabel"
+        class="product-title"
     >
-        Checking Code...
+        🧵 CODE: <b>LA-001</b>
     </div>
 
+
     <button
+        type="button"
         class="cart-btn"
         onclick="showProforma()"
     >
         🛍️ Order This Suit Now
     </button>
 
+
 </div>
 
 
-<!-- ============================= -->
-<!-- LIBAS ATELIER PROFORMA -->
-<!-- ============================= -->
+
+<!-- =====================================================
+     PROFORMA MODAL
+     ===================================================== -->
 
 <div
     id="orderModal"
@@ -326,17 +613,20 @@ textarea:focus {
 
     <div class="proforma-card">
 
+
         <h3>
             📋 LIBAS ATELIER PROFORMA
         </h3>
 
+
         <p class="proforma-intro">
-            Complete your order details.
-            Your order will then be prepared in WhatsApp.
+            Complete your order details. Your order will
+            then be prepared in WhatsApp.
         </p>
 
 
-        <!-- CUSTOMER NAME -->
+
+        <!-- NAME -->
 
         <div class="form-field">
 
@@ -348,12 +638,14 @@ textarea:focus {
                 type="text"
                 id="clientName"
                 placeholder="Enter your full name"
+                autocomplete="name"
             >
 
         </div>
 
 
-        <!-- CUSTOMER PHONE -->
+
+        <!-- PHONE -->
 
         <div class="form-field">
 
@@ -365,12 +657,14 @@ textarea:focus {
                 type="tel"
                 id="clientPhone"
                 placeholder="e.g. 03001234567"
+                autocomplete="tel"
             >
 
         </div>
 
 
-        <!-- DELIVERY ADDRESS -->
+
+        <!-- ADDRESS -->
 
         <div class="form-field">
 
@@ -382,9 +676,35 @@ textarea:focus {
                 id="clientAddress"
                 rows="3"
                 placeholder="House number, Street, Area, City"
+                autocomplete="street-address"
             ></textarea>
 
         </div>
+
+
+
+        <!-- METERS -->
+
+        <div class="form-field">
+
+            <label>
+                Required Fabric Quantity (Meters) *
+            </label>
+
+            <input
+                type="number"
+                id="fabricMeters"
+                placeholder="e.g. 3.5"
+                min="0.1"
+                step="0.1"
+            >
+
+            <div class="helper-text">
+                Enter the quantity of fabric you require.
+            </div>
+
+        </div>
+
 
 
         <!-- NOTES -->
@@ -392,112 +712,154 @@ textarea:focus {
         <div class="form-field">
 
             <label>
-                Sizing Notes / Cutting Yards
+                Sizing Notes / Other Requirements
             </label>
 
             <textarea
                 id="orderNotes"
                 rows="2"
-                placeholder="Height preferences or unstitched details..."
+                placeholder="Any special requirements..."
             ></textarea>
 
         </div>
 
 
-        <!-- ============================= -->
-        <!-- PRICE / DELIVERY SETTINGS -->
-        <!-- ============================= -->
 
-        <div class="settings-box">
+        <!-- =================================================
+             SELLER SETTINGS
+             ================================================= -->
 
-            <div class="settings-title">
+        <details class="settings-box">
+
+            <summary>
                 ⚙️ Product & Delivery Settings
-            </div>
-
-            <p class="settings-note">
-                Enter these once on this browser/device.
-                They will remain saved and appear prefilled
-                the next time the proforma opens.
-            </p>
+            </summary>
 
 
-            <!-- PRODUCT PRICE -->
-
-            <div class="form-field">
-
-                <label>
-                    Product Price
-                </label>
-
-                <div class="currency-input">
-
-                    <span>
-                        Rs.
-                    </span>
-
-                    <input
-                        type="number"
-                        id="productPrice"
-                        placeholder="e.g. 3500"
-                        min="0"
-                        step="1"
-                    >
-
-                </div>
-
-            </div>
+            <div class="settings-content">
 
 
-            <!-- DELIVERY -->
+                <p class="settings-note">
+                    Enter these once for this product.
+                    They will remain saved on this browser
+                    and appear prefilled next time.
+                </p>
 
-            <div class="form-field">
 
-                <label>
-                    Delivery Charges
-                </label>
 
-                <div class="currency-input">
+                <!-- PRICE PER METER -->
 
-                    <span>
-                        Rs.
-                    </span>
+                <div class="form-field">
 
-                    <input
-                        type="number"
-                        id="deliveryCharge"
-                        placeholder="e.g. 250"
-                        min="0"
-                        step="1"
-                    >
+                    <label>
+                        Price per Meter
+                    </label>
+
+                    <div class="currency-input">
+
+                        <span>
+                            Rs.
+                        </span>
+
+                        <input
+                            type="number"
+                            id="pricePerMeter"
+                            placeholder="e.g. 750"
+                            min="0"
+                            step="1"
+                        >
+
+                    </div>
 
                 </div>
 
+
+
+                <!-- DELIVERY -->
+
+                <div class="form-field">
+
+                    <label>
+                        Delivery Charges
+                    </label>
+
+                    <div class="currency-input">
+
+                        <span>
+                            Rs.
+                        </span>
+
+                        <input
+                            type="number"
+                            id="deliveryCharge"
+                            placeholder="e.g. 250"
+                            min="0"
+                            step="1"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOKEN -->
+
+                <div class="form-field">
+
+                    <label>
+                        Serious Customer Token (Advance Payment)
+                    </label>
+
+                    <div class="currency-input">
+
+                        <span>
+                            Rs.
+                        </span>
+
+                        <input
+                            type="number"
+                            id="customerToken"
+                            placeholder="e.g. 500"
+                            min="0"
+                            step="1"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <button
+                    type="button"
+                    class="save-settings-btn"
+                    onclick="savePricingSettings()"
+                >
+                    💾 Save Product Settings
+                </button>
+
+
+                <div
+                    id="savedStatus"
+                    class="saved-status"
+                >
+                    ✓ Saved on this device
+                </div>
+
+
             </div>
 
-
-            <button
-                class="save-settings-btn"
-                onclick="savePricingSettings()"
-            >
-                💾 Save Price & Delivery
-            </button>
+        </details>
 
 
-            <div
-                id="savedStatus"
-                class="saved-status"
-            >
-                ✓ Saved on this device
-            </div>
 
-        </div>
-
-
-        <!-- ============================= -->
-        <!-- ORDER SUMMARY -->
-        <!-- ============================= -->
+        <!-- =================================================
+             FINAL CALCULATION
+             ================================================= -->
 
         <div class="order-summary">
+
 
             <div class="summary-row">
 
@@ -506,7 +868,7 @@ textarea:focus {
                 </span>
 
                 <strong id="summarySku">
-                    —
+                    LA-001
                 </strong>
 
             </div>
@@ -518,7 +880,7 @@ textarea:focus {
                     Product Price
                 </span>
 
-                <strong id="summaryPrice">
+                <strong id="summaryProductPrice">
                     Rs. 0
                 </strong>
 
@@ -528,34 +890,79 @@ textarea:focus {
             <div class="summary-row">
 
                 <span>
-                    Delivery
+                    Delivery Charges
                 </span>
 
                 <strong id="summaryDelivery">
-                    Rs. 0
+                    + Rs. 0
                 </strong>
 
             </div>
 
 
-            <div class="summary-row total">
+            <div class="summary-row gross-total">
 
                 <span>
-                    TOTAL
+                    TOTAL ORDER VALUE
                 </span>
 
-                <strong id="summaryTotal">
+                <strong id="summaryGrossTotal">
                     Rs. 0
                 </strong>
 
             </div>
+
+
+            <div class="summary-row advance">
+
+                <span>
+                    Serious Customer Token
+                </span>
+
+                <strong id="summaryToken">
+                    − Rs. 0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row net-total">
+
+                <span>
+                    NET PAYABLE
+                </span>
+
+                <strong id="summaryNetPayable">
+                    Rs. 0
+                </strong>
+
+            </div>
+
 
         </div>
 
 
-        <!-- SEND TO WHATSAPP -->
+
+        <!-- TOKEN NOTE -->
+
+        <div class="customer-note">
+
+            ⭐ <strong>Important:</strong>
+            On payment of the Serious Customer Token,
+            your order will be dispatched. The token amount
+            will be deducted from the total payable amount
+            when you receive your parcel. 📦
+
+        </div>
+
+
+
+        <!-- =================================================
+             WHATSAPP SEND
+             ================================================= -->
 
         <button
+            type="button"
             class="submit-order-btn"
             onclick="dispatchOrder()"
         >
@@ -563,7 +970,9 @@ textarea:focus {
         </button>
 
 
+
         <button
+            type="button"
             class="back-btn"
             onclick="hideProforma()"
         >
@@ -571,52 +980,34 @@ textarea:focus {
         </button>
 
 
+
         <div class="setup-note">
 
-            Price and delivery settings are stored only
-            in this browser using local storage.
+            Product price per meter, delivery charges and
+            customer token are stored only in this browser.
             They are not uploaded to GitHub.
 
         </div>
+
 
     </div>
 
 </div>
 
 
+
 <script>
 
-/* ==========================================
-   LIBAS ATELIER PLAIN FABRIC DATABASE
-   ========================================== */
+/* =====================================================
+   DEFAULT PRODUCT
+   ===================================================== */
 
-const plainColorDatabase = {
-
-    "navy-blue": "#0020C2",
-
-    "emerald-green": "#50C878",
-
-    "maroon": "#800000",
-
-    "mustard": "#FFDB58",
-
-    "jet-black": "#111111",
-
-    "ruby-red": "#E0115F"
-
-};
+let activeSkuCode = "LA-001";
 
 
-/* ==========================================
-   ACTIVE PRODUCT CODE
-   ========================================== */
-
-let activeSkuCode = "ATELIER-ITEM";
-
-
-/* ==========================================
-   RUPEE FORMATTER
-   ========================================== */
+/* =====================================================
+   FORMAT RUPEES
+   ===================================================== */
 
 function formatRupees(value) {
 
@@ -627,16 +1018,64 @@ function formatRupees(value) {
 }
 
 
-/* ==========================================
-   LOAD SAVED PRICE & DELIVERY
-   ========================================== */
+/* =====================================================
+   CONVERT DESIGN NAME TO LA SKU
+   =====================================================
+
+   atelier001 -> LA-001
+   atelier002 -> LA-002
+   atelier123 -> LA-123
+   ===================================================== */
+
+function createSku(designParam) {
+
+    const match =
+        designParam.match(/(\d+)$/);
+
+
+    if (match) {
+
+        return "LA-" +
+            match[1].padStart(3, "0");
+
+    }
+
+
+    return "LA-" +
+        designParam
+            .toUpperCase()
+            .replace(/[^A-Z0-9]+/g, "-");
+
+}
+
+
+/* =====================================================
+   STORAGE KEY
+   ===================================================== */
+
+function storageKey(type) {
+
+    return (
+        "libas_" +
+        type +
+        "_" +
+        activeSkuCode.toLowerCase()
+    );
+
+}
+
+
+/* =====================================================
+   LOAD SAVED SETTINGS
+   ===================================================== */
 
 function loadSavedPricing() {
 
     const savedPrice =
         localStorage.getItem(
-            "libas_product_price"
+            storageKey("price_per_meter")
         );
+
 
     const savedDelivery =
         localStorage.getItem(
@@ -644,22 +1083,34 @@ function loadSavedPricing() {
         );
 
 
-    if (savedPrice !== null) {
-
-        document.getElementById(
-            "productPrice"
-        ).value = savedPrice;
-
-    }
+    const savedToken =
+        localStorage.getItem(
+            "libas_customer_token"
+        );
 
 
-    if (savedDelivery !== null) {
+    document.getElementById(
+        "pricePerMeter"
+    ).value =
+        savedPrice !== null
+            ? savedPrice
+            : "";
 
-        document.getElementById(
-            "deliveryCharge"
-        ).value = savedDelivery;
 
-    }
+    document.getElementById(
+        "deliveryCharge"
+    ).value =
+        savedDelivery !== null
+            ? savedDelivery
+            : "";
+
+
+    document.getElementById(
+        "customerToken"
+    ).value =
+        savedToken !== null
+            ? savedToken
+            : "";
 
 
     updateOrderSummary();
@@ -667,32 +1118,45 @@ function loadSavedPricing() {
 }
 
 
-/* ==========================================
-   SAVE PRICE & DELIVERY
-   ========================================== */
+/* =====================================================
+   SAVE SETTINGS
+   ===================================================== */
 
 function savePricingSettings() {
 
     const price =
         document.getElementById(
-            "productPrice"
-        ).value;
+            "pricePerMeter"
+        ).value || "0";
+
 
     const delivery =
         document.getElementById(
             "deliveryCharge"
-        ).value;
+        ).value || "0";
+
+
+    const token =
+        document.getElementById(
+            "customerToken"
+        ).value || "0";
 
 
     localStorage.setItem(
-        "libas_product_price",
-        price || "0"
+        storageKey("price_per_meter"),
+        price
     );
 
 
     localStorage.setItem(
         "libas_delivery_charge",
-        delivery || "0"
+        delivery
+    );
+
+
+    localStorage.setItem(
+        "libas_customer_token",
+        token
     );
 
 
@@ -717,16 +1181,24 @@ function savePricingSettings() {
 }
 
 
-/* ==========================================
-   UPDATE ORDER TOTAL
-   ========================================== */
+/* =====================================================
+   UPDATE CALCULATION
+   ===================================================== */
 
 function updateOrderSummary() {
 
-    const price =
+    const pricePerMeter =
         Number(
             document.getElementById(
-                "productPrice"
+                "pricePerMeter"
+            ).value || 0
+        );
+
+
+    const meters =
+        Number(
+            document.getElementById(
+                "fabricMeters"
             ).value || 0
         );
 
@@ -739,8 +1211,27 @@ function updateOrderSummary() {
         );
 
 
-    const total =
-        price + delivery;
+    const token =
+        Number(
+            document.getElementById(
+                "customerToken"
+            ).value || 0
+        );
+
+
+    const productPrice =
+        pricePerMeter * meters;
+
+
+    const grossTotal =
+        productPrice + delivery;
+
+
+    const netPayable =
+        Math.max(
+            0,
+            grossTotal - token
+        );
 
 
     document.getElementById(
@@ -750,175 +1241,188 @@ function updateOrderSummary() {
 
 
     document.getElementById(
-        "summaryPrice"
+        "summaryProductPrice"
     ).textContent =
-        formatRupees(price);
+        formatRupees(productPrice);
 
 
     document.getElementById(
         "summaryDelivery"
     ).textContent =
+        "+ " +
         formatRupees(delivery);
 
 
     document.getElementById(
-        "summaryTotal"
+        "summaryGrossTotal"
     ).textContent =
-        formatRupees(total);
+        formatRupees(grossTotal);
+
+
+    document.getElementById(
+        "summaryToken"
+    ).textContent =
+        "− " +
+        formatRupees(token);
+
+
+    document.getElementById(
+        "summaryNetPayable"
+    ).textContent =
+        formatRupees(netPayable);
 
 }
 
 
-/* ==========================================
-   LOAD PRODUCT FROM QR / URL
-   ========================================== */
+/* =====================================================
+   LOAD PRODUCT FROM URL
+   ===================================================== */
 
-window.onload = function() {
+function loadProduct() {
 
-    const urlParams =
+    const params =
         new URLSearchParams(
             window.location.search
         );
 
 
     const designParam =
-        urlParams.get("design");
+        params.get("design");
 
 
-    const plainParam =
-        urlParams.get("fabric");
-
-
-    const canvasElement =
-        document.getElementById(
-            "canvasFrame"
-        );
-
-
-    const imgElement =
+    const image =
         document.getElementById(
             "displayImage"
         );
 
 
-    const labelElement =
+    const label =
         document.getElementById(
             "itemLabel"
         );
 
 
-    /* PRINTED / EMBROIDERED DESIGN */
+    const canvas =
+        document.getElementById(
+            "canvasFrame"
+        );
+
+
+    /* ================================================
+       DESIGN PRODUCT
+       ================================================ */
 
     if (designParam) {
 
-        imgElement.src =
-            designParam.toLowerCase()
-            + ".jpg";
+        const cleanDesign =
+            designParam
+                .trim()
+                .toLowerCase();
 
 
-        imgElement.style.objectFit =
+        activeSkuCode =
+            createSku(
+                cleanDesign
+            );
+
+
+        image.src =
+            cleanDesign +
+            ".jpg";
+
+
+        image.style.display =
+            "block";
+
+
+        image.style.objectFit =
             "cover";
 
 
-        canvasElement.style.backgroundColor =
+        canvas.style.backgroundColor =
             "#ffffff";
 
 
-        activeSkuCode =
-            designParam.toUpperCase();
-
-
-        labelElement.innerHTML =
-            `🔎 CODE: <b>${activeSkuCode}</b>`;
+        label.innerHTML =
+            "🧵 CODE: <b>" +
+            activeSkuCode +
+            "</b>";
 
     }
 
 
-    /* PLAIN FABRIC */
-
-    else if (
-        plainParam &&
-        plainColorDatabase[
-            plainParam.toLowerCase()
-        ]
-    ) {
-
-        imgElement.src =
-            "ladies-silhouette.png";
-
-
-        imgElement.style.objectFit =
-            "contain";
-
-
-        canvasElement.style.backgroundColor =
-            plainColorDatabase[
-                plainParam.toLowerCase()
-            ];
-
-
-        activeSkuCode =
-            `ATELIER-${plainParam.toUpperCase()}`;
-
-
-        labelElement.innerHTML =
-            `🎨 CODE: <b>${activeSkuCode}</b>`;
-
-    }
-
-
-    /* NO PRODUCT PARAMETER */
+    /* ================================================
+       BASE URL TEST
+       ================================================ */
 
     else {
 
-        imgElement.src =
-            "default-preview.jpg";
+        /*
+         * For a clean base-URL test we deliberately
+         * use LA-001 rather than displaying the brand
+         * name again.
+         */
+
+        activeSkuCode =
+            "LA-001";
 
 
-        labelElement.innerHTML =
-            "✨ Welcome to Libas Atelier";
+        image.style.display =
+            "none";
+
+
+        canvas.style.backgroundColor =
+            "#1a1a1a";
+
+
+        label.innerHTML =
+            "🧵 CODE: <b>LA-001</b>";
 
     }
 
 
     loadSavedPricing();
 
-};
+}
 
 
-/* ==========================================
-   OPEN PROFORMA
-   ========================================== */
+/* =====================================================
+   SHOW PROFORMA
+   ===================================================== */
 
 function showProforma() {
 
     loadSavedPricing();
 
+
     updateOrderSummary();
+
 
     document.getElementById(
         "orderModal"
-    ).style.display = "flex";
+    ).style.display =
+        "flex";
 
 }
 
 
-/* ==========================================
-   CLOSE PROFORMA
-   ========================================== */
+/* =====================================================
+   HIDE PROFORMA
+   ===================================================== */
 
 function hideProforma() {
 
     document.getElementById(
         "orderModal"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 }
 
 
-/* ==========================================
-   SEND ORDER TO WHATSAPP
-   ========================================== */
+/* =====================================================
+   SEND ORDER
+   ===================================================== */
 
 function dispatchOrder() {
 
@@ -934,10 +1438,18 @@ function dispatchOrder() {
         ).value.trim();
 
 
-    const addr =
+    const address =
         document.getElementById(
             "clientAddress"
         ).value.trim();
+
+
+    const meters =
+        Number(
+            document.getElementById(
+                "fabricMeters"
+            ).value || 0
+        );
 
 
     const notes =
@@ -946,10 +1458,10 @@ function dispatchOrder() {
         ).value.trim();
 
 
-    const price =
+    const pricePerMeter =
         Number(
             document.getElementById(
-                "productPrice"
+                "pricePerMeter"
             ).value || 0
         );
 
@@ -962,20 +1474,22 @@ function dispatchOrder() {
         );
 
 
-    const total =
-        price + delivery;
+    const token =
+        Number(
+            document.getElementById(
+                "customerToken"
+            ).value || 0
+        );
 
 
-    /* REQUIRED CUSTOMER FIELDS */
+    /* ================================================
+       VALIDATION
+       ================================================ */
 
-    if (
-        !name ||
-        !phone ||
-        !addr
-    ) {
+    if (!name) {
 
         alert(
-            "Please fill out all required fields."
+            "Please enter your full name."
         );
 
         return;
@@ -983,11 +1497,81 @@ function dispatchOrder() {
     }
 
 
-    /* SAVE PRICING AUTOMATICALLY */
+    if (!phone) {
+
+        alert(
+            "Please enter your mobile / WhatsApp number."
+        );
+
+        return;
+
+    }
+
+
+    if (!address) {
+
+        alert(
+            "Please enter your complete delivery address."
+        );
+
+        return;
+
+    }
+
+
+    if (!meters || meters <= 0) {
+
+        alert(
+            "Please enter the required fabric quantity in meters."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        pricePerMeter <= 0
+    ) {
+
+        alert(
+            "Please enter the product price per meter in Product Settings."
+        );
+
+        return;
+
+    }
+
+
+    /* ================================================
+       CALCULATION
+       ================================================ */
+
+    const productPrice =
+        pricePerMeter *
+        meters;
+
+
+    const grossTotal =
+        productPrice +
+        delivery;
+
+
+    const netPayable =
+        Math.max(
+            0,
+            grossTotal -
+            token
+        );
+
+
+    /* ================================================
+       SAVE SETTINGS
+       ================================================ */
 
     localStorage.setItem(
-        "libas_product_price",
-        String(price)
+        storageKey("price_per_meter"),
+        String(pricePerMeter)
     );
 
 
@@ -997,82 +1581,126 @@ function dispatchOrder() {
     );
 
 
-    /* ======================================
-       YOUR ONE OFFICIAL WHATSAPP BUSINESS
-       NUMBER
-       ====================================== */
+    localStorage.setItem(
+        "libas_customer_token",
+        String(token)
+    );
+
+
+    /* ================================================
+       YOUR WHATSAPP BUSINESS NUMBER
+       ================================================ */
 
     const STORE_WHATSAPP_LINE =
         "923038710292";
 
 
-    /* ======================================
+    /* ================================================
        ORDER MESSAGE
-       ====================================== */
+       ================================================ */
 
     const finalMessage =
 
-        `🛍️ *NEW INBOUND ORDER - LIBAS ATELIER* 🛍️\n\n` +
+        "🛍️ *NEW INBOUND ORDER - LIBAS ATELIER* 🛍️\n\n" +
 
-        `🧵 *Design Code:* ${activeSkuCode}\n` +
+        "🧵 *Design Code:* " +
+        activeSkuCode +
+        "\n" +
 
-        `👤 *Customer Name:* ${name}\n` +
+        "👤 *Customer Name:* " +
+        name +
+        "\n" +
 
-        `📞 *Customer WhatsApp:* ${phone}\n` +
+        "📞 *Customer WhatsApp:* " +
+        phone +
+        "\n" +
 
-        `📍 *Delivery Address:* ${addr}\n` +
+        "📍 *Delivery Address:* " +
+        address +
+        "\n" +
 
-        `📝 *Sizing / Notes:* ${notes || "None"}\n\n` +
+        "📏 *Required Fabric:* " +
+        meters.toFixed(1) +
+        " meters\n" +
 
-        `💰 *Product Price:* ${formatRupees(price)}\n` +
+        "📝 *Sizing / Notes:* " +
+        (notes || "None") +
+        "\n\n" +
 
-        `🚚 *Delivery Charges:* ${formatRupees(delivery)}\n` +
+        "💰 *Product Price:* " +
+        formatRupees(productPrice) +
+        "\n" +
 
-        `💵 *TOTAL:* ${formatRupees(total)}`;
+        "🚚 *Delivery Charges:* + " +
+        formatRupees(delivery) +
+        "\n" +
+
+        "💵 *TOTAL ORDER VALUE:* " +
+        formatRupees(grossTotal) +
+        "\n" +
+
+        "🔐 *Serious Customer Token (Advance Payment):* − " +
+        formatRupees(token) +
+        "\n" +
+
+        "💳 *NET PAYABLE:* " +
+        formatRupees(netPayable) +
+        "\n\n" +
+
+        "⭐ *On payment of the Serious Customer Token, " +
+        "your order will be dispatched. The token amount " +
+        "will be deducted from the total payable amount " +
+        "when you receive your parcel. 📦*";
 
 
-    /* ======================================
-       CORRECT WHATSAPP URL
-
-       IMPORTANT:
-       The "/" after wa.me is REQUIRED.
-       ====================================== */
+    /* ================================================
+       WHATSAPP URL
+       ================================================ */
 
     const whatsappURL =
-
         "https://wa.me/" +
-
         STORE_WHATSAPP_LINE +
-
         "?text=" +
-
         encodeURIComponent(
             finalMessage
         );
 
 
-    window.open(
-        whatsappURL,
-        "_blank"
-    );
+    /*
+     * IMPORTANT:
+     * Direct location navigation is deliberately used
+     * here instead of window.open().
+     *
+     * This avoids mobile browsers blocking the WhatsApp
+     * launch as a popup.
+     */
+
+    window.location.href =
+        whatsappURL;
 
 }
 
 
-/* ==========================================
-   LIVE PRICE/TOTAL UPDATE
-   ========================================== */
+/* =====================================================
+   LIVE CALCULATION
+   ===================================================== */
 
 document.addEventListener(
     "input",
     function(event) {
 
-        if (
-            event.target.id ===
-                "productPrice" ||
+        const fields = [
+            "pricePerMeter",
+            "fabricMeters",
+            "deliveryCharge",
+            "customerToken"
+        ];
 
-            event.target.id ===
-                "deliveryCharge"
+
+        if (
+            fields.includes(
+                event.target.id
+            )
         ) {
 
             updateOrderSummary();
@@ -1080,6 +1708,16 @@ document.addEventListener(
         }
 
     }
+);
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    loadProduct
 );
 
 </script>
