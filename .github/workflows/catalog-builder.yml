@@ -49,7 +49,7 @@ jobs:
 
           echo "TOTAL PRODUCTS DETECTED: $found"
 
-            - name: Save generated catalog
+      - name: Save generated catalog 
         run: |
           mkdir -p catalog-output
           cp generated-catalog/catalog.md catalog-output/
