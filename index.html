@@ -6,13 +6,9 @@
 <title>LIBAS ATELIER</title>
 
 <style>
+* { box-sizing: border-box; }
 
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
+html, body {
     margin: 0;
     padding: 0;
     min-height: 100%;
@@ -26,38 +22,22 @@ body {
     padding: 15px;
 }
 
-
-/* =====================================================
-   MAIN SCREEN
-   ===================================================== */
-
 .container {
     width: 100%;
     max-width: 410px;
     margin: 10px auto;
     padding: 25px;
-
     background: #1a1a1a;
-
     border: 1px solid #333;
     border-radius: 24px;
-
     box-shadow: 0 15px 40px rgba(0,0,0,.5);
 }
 
-
-/* =====================================================
-   BRAND
-   ===================================================== */
-
 .brand-header {
     margin: 0;
-
     color: #ffffff;
-
     font-size: 26px;
     font-weight: 700;
-
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -65,34 +45,21 @@ body {
 .brand-sub {
     margin-top: 7px;
     margin-bottom: 20px;
-
     color: #d4af37;
-
     font-size: 11px;
     font-weight: bold;
-
     letter-spacing: 3px;
     text-transform: uppercase;
 }
 
-
-/* =====================================================
-   PRODUCT VISUAL
-   ===================================================== */
-
 .preview-box {
     position: relative;
-
     width: 100%;
     max-width: 290px;
     height: 400px;
-
     margin: 15px auto 25px;
-
     overflow: hidden;
-
     background: #ffffff;
-
     border: 1px solid #333;
     border-radius: 18px;
 }
@@ -100,118 +67,70 @@ body {
 .preview-box img {
     width: 100%;
     height: 100%;
-
     display: block;
-
     object-fit: cover;
 }
 
-
-/* =====================================================
-   PRODUCT CODE
-   ===================================================== */
-
 .product-title {
     margin-bottom: 20px;
-
     color: #ffffff;
-
     font-size: 16px;
     font-weight: 800;
-
     letter-spacing: 1px;
 }
 
-
-/* =====================================================
-   ORDER BUTTON
-   ===================================================== */
-
 .cart-btn {
     width: 100%;
-
     padding: 16px;
-
     border: none;
     border-radius: 14px;
-
     background: #ff4757;
     color: #ffffff;
-
     font-size: 15px;
     font-weight: bold;
-
     letter-spacing: 1.5px;
     text-transform: uppercase;
-
     cursor: pointer;
 }
 
-
-/* =====================================================
-   PROFORMA MODAL
-   ===================================================== */
-
 .popup-overlay {
     display: none;
-
     position: fixed;
     inset: 0;
-
     z-index: 1000;
-
     width: 100%;
     height: 100%;
-
     padding: 15px;
-
     overflow-y: auto;
-
     align-items: center;
     justify-content: center;
-
     background: rgba(0,0,0,.82);
 }
 
 .proforma-card {
     width: 100%;
     max-width: 390px;
-
     max-height: 94vh;
-
     overflow-y: auto;
-
     padding: 25px;
-
     background: #1a1a1a;
-
     border: 1px solid #333;
     border-radius: 22px;
-
     color: #ffffff;
-
     text-align: left;
 }
 
 .proforma-card h3 {
     margin: 0 0 10px;
-
     font-size: 20px;
 }
 
 .proforma-intro {
     margin: 0 0 20px;
-
     color: #d4af37;
-
     font-size: 12px;
     line-height: 1.5;
 }
-
-
-/* =====================================================
-   FORM
-   ===================================================== */
 
 .form-field {
     margin-bottom: 15px;
@@ -219,11 +138,8 @@ body {
 
 label {
     display: block;
-
     margin-bottom: 6px;
-
     color: #d4af37;
-
     font-size: 13px;
     font-weight: 700;
 }
@@ -231,17 +147,12 @@ label {
 input,
 textarea {
     width: 100%;
-
     padding: 12px;
-
     border: 1px solid #333;
     border-radius: 10px;
-
     outline: none;
-
     background: #111111;
     color: #ffffff;
-
     font-size: 14px;
 }
 
@@ -250,53 +161,27 @@ textarea:focus {
     border-color: #d4af37;
 }
 
-.helper-text {
+.helper-text,
+.whatsapp-help {
     margin-top: 5px;
-
     color: #888888;
-
     font-size: 10px;
     line-height: 1.4;
 }
 
-
-/* =====================================================
-   WHATSAPP OPTIONAL NOTICE
-   ===================================================== */
-
-.whatsapp-help {
-    margin-top: 6px;
-
-    color: #888888;
-
-    font-size: 10px;
-    line-height: 1.45;
-}
-
-
-/* =====================================================
-   SELLER SETTINGS
-   ===================================================== */
-
 .settings-box {
     margin: 8px 0 18px;
-
     padding: 15px;
-
     border: 1px solid #444;
     border-radius: 14px;
-
     background: #121212;
 }
 
 .settings-box summary {
     color: #ffffff;
-
     font-size: 14px;
     font-weight: 700;
-
     cursor: pointer;
-
     list-style: none;
 }
 
@@ -306,11 +191,8 @@ textarea:focus {
 
 .settings-box summary::after {
     content: "＋";
-
     float: right;
-
     color: #d4af37;
-
     font-size: 18px;
 }
 
@@ -324,11 +206,8 @@ textarea:focus {
 
 .settings-note {
     margin: 0 0 12px;
-
     color: #aaaaaa;
-
     font-size: 11px;
-
     line-height: 1.5;
 }
 
@@ -338,12 +217,9 @@ textarea:focus {
 
 .currency-input span {
     position: absolute;
-
     left: 12px;
     top: 12px;
-
     color: #d4af37;
-
     font-size: 14px;
     font-weight: 700;
 }
@@ -354,59 +230,38 @@ textarea:focus {
 
 .save-settings-btn {
     width: 100%;
-
     margin-top: 4px;
-
     padding: 12px;
-
     border: none;
     border-radius: 9px;
-
     background: #d4af37;
     color: #111111;
-
     font-size: 14px;
     font-weight: 800;
-
     cursor: pointer;
 }
 
 .saved-status {
     display: none;
-
     margin-top: 8px;
-
     color: #25D366;
-
     font-size: 11px;
-
     text-align: center;
 }
 
-
-/* =====================================================
-   ORDER SUMMARY
-   ===================================================== */
-
 .order-summary {
     margin: 5px 0 17px;
-
     padding: 13px 0;
-
     border-top: 1px solid #333;
     border-bottom: 1px solid #333;
 }
 
 .summary-row {
     display: flex;
-
     justify-content: space-between;
     align-items: center;
-
     gap: 15px;
-
     margin: 9px 0;
-
     font-size: 13px;
 }
 
@@ -416,20 +271,15 @@ textarea:focus {
 
 .summary-row.gross-total {
     margin-top: 13px;
-
     padding-top: 11px;
-
     border-top: 1px solid #333;
-
     font-size: 15px;
     font-weight: 800;
 }
 
 .summary-row.advance {
     margin-top: 12px;
-
     color: #d4af37;
-
     font-weight: 700;
 }
 
@@ -440,13 +290,9 @@ textarea:focus {
 
 .summary-row.net-total {
     margin-top: 12px;
-
     padding-top: 12px;
-
     border-top: 1px solid #333;
-
     color: #25D366;
-
     font-size: 17px;
     font-weight: 900;
 }
@@ -456,20 +302,11 @@ textarea:focus {
     color: #25D366;
 }
 
-
-/* =====================================================
-   TOKEN NOTE
-   ===================================================== */
-
 .customer-note {
     margin-top: 15px;
-
     padding: 10px 5px 0;
-
     color: #bbbbbb;
-
     font-size: 11px;
-
     line-height: 1.55;
 }
 
@@ -477,78 +314,40 @@ textarea:focus {
     color: #d4af37;
 }
 
-
-/* =====================================================
-   SEND BUTTON
-   ===================================================== */
-
 .submit-order-btn {
     width: 100%;
-
     margin-top: 8px;
-
     padding: 15px;
-
     border: none;
     border-radius: 10px;
-
     background: #25D366;
     color: #ffffff;
-
     font-size: 16px;
     font-weight: bold;
-
     cursor: pointer;
 }
-
-
-/* =====================================================
-   BACK BUTTON
-   ===================================================== */
 
 .back-btn {
     width: 100%;
-
     margin-top: 12px;
-
     padding: 5px;
-
     border: none;
-
     background: none;
-
     color: #d4af37;
-
     font-size: 12px;
-
     cursor: pointer;
 }
 
-
-/* =====================================================
-   FOOTER
-   ===================================================== */
-
 .setup-note {
     margin-top: 14px;
-
     color: #777777;
-
     font-size: 10px;
-
     line-height: 1.45;
 }
-
 </style>
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     MAIN PRODUCT SCREEN
-     ===================================================== -->
 
 <div class="container">
 
@@ -560,28 +359,13 @@ textarea:focus {
         Luxury Catalog Hub
     </div>
 
-
-    <div
-        id="canvasFrame"
-        class="preview-box"
-    >
-
-        <img
-            id="displayImage"
-            src=""
-            alt="Libas Atelier Collection"
-        >
-
+    <div id="canvasFrame" class="preview-box">
+        <img id="displayImage" src="" alt="Libas Atelier Collection">
     </div>
 
-
-    <div
-        id="itemLabel"
-        class="product-title"
-    >
+    <div id="itemLabel" class="product-title">
         🧵 CODE: <b>LA-001</b>
     </div>
-
 
     <button
         type="button"
@@ -594,23 +378,13 @@ textarea:focus {
 </div>
 
 
-
-<!-- =====================================================
-     PROFORMA
-     ===================================================== -->
-
-<div
-    id="orderModal"
-    class="popup-overlay"
->
+<div id="orderModal" class="popup-overlay">
 
     <div class="proforma-card">
-
 
         <h3>
             📋 LIBAS ATELIER PROFORMA
         </h3>
-
 
         <p class="proforma-intro">
             Complete your order details. Your order will
@@ -618,11 +392,6 @@ textarea:focus {
             method.
         </p>
 
-
-
-        <!-- =================================================
-             CUSTOMER NAME
-             ================================================= -->
 
         <div class="form-field">
 
@@ -639,11 +408,6 @@ textarea:focus {
 
         </div>
 
-
-
-        <!-- =================================================
-             MOBILE NUMBER
-             ================================================= -->
 
         <div class="form-field">
 
@@ -664,11 +428,6 @@ textarea:focus {
 
         </div>
 
-
-
-        <!-- =================================================
-             WHATSAPP NUMBER - OPTIONAL
-             ================================================= -->
 
         <div class="form-field">
 
@@ -691,11 +450,6 @@ textarea:focus {
         </div>
 
 
-
-        <!-- =================================================
-             ADDRESS
-             ================================================= -->
-
         <div class="form-field">
 
             <label>
@@ -711,11 +465,6 @@ textarea:focus {
 
         </div>
 
-
-
-        <!-- =================================================
-             FABRIC METERS
-             ================================================= -->
 
         <div class="form-field">
 
@@ -738,11 +487,6 @@ textarea:focus {
         </div>
 
 
-
-        <!-- =================================================
-             NOTES
-             ================================================= -->
-
         <div class="form-field">
 
             <label>
@@ -758,20 +502,13 @@ textarea:focus {
         </div>
 
 
-
-        <!-- =================================================
-             SELLER SETTINGS
-             ================================================= -->
-
         <details class="settings-box">
 
             <summary>
                 ⚙️ Product & Delivery Settings
             </summary>
 
-
             <div class="settings-content">
-
 
                 <p class="settings-note">
                     Enter these once for this product.
@@ -779,9 +516,6 @@ textarea:focus {
                     and appear prefilled next time.
                 </p>
 
-
-
-                <!-- PRICE PER METER -->
 
                 <div class="form-field">
 
@@ -791,9 +525,7 @@ textarea:focus {
 
                     <div class="currency-input">
 
-                        <span>
-                            Rs.
-                        </span>
+                        <span>Rs.</span>
 
                         <input
                             type="number"
@@ -808,9 +540,6 @@ textarea:focus {
                 </div>
 
 
-
-                <!-- DELIVERY -->
-
                 <div class="form-field">
 
                     <label>
@@ -819,9 +548,7 @@ textarea:focus {
 
                     <div class="currency-input">
 
-                        <span>
-                            Rs.
-                        </span>
+                        <span>Rs.</span>
 
                         <input
                             type="number"
@@ -836,9 +563,6 @@ textarea:focus {
                 </div>
 
 
-
-                <!-- TOKEN -->
-
                 <div class="form-field">
 
                     <label>
@@ -847,9 +571,7 @@ textarea:focus {
 
                     <div class="currency-input">
 
-                        <span>
-                            Rs.
-                        </span>
+                        <span>Rs.</span>
 
                         <input
                             type="number"
@@ -862,7 +584,6 @@ textarea:focus {
                     </div>
 
                 </div>
-
 
 
                 <button
@@ -881,19 +602,12 @@ textarea:focus {
                     ✓ Saved on this device
                 </div>
 
-
             </div>
 
         </details>
 
 
-
-        <!-- =================================================
-             ORDER CALCULATION
-             ================================================= -->
-
         <div class="order-summary">
-
 
             <div class="summary-row">
 
@@ -975,26 +689,19 @@ textarea:focus {
         </div>
 
 
-
-        <!-- =================================================
-             TOKEN NOTE
-             ================================================= -->
-
         <div class="customer-note">
 
-            ⭐ <strong>Important:</strong>
-            On payment of the Serious Customer Token,
-            your order will be dispatched. The token amount
-            will be deducted from the total payable amount
-            when you receive your parcel. 📦
+            ⭐ <strong>IMPORTANT:</strong><br>
+
+            <strong>
+                On payment of the Serious Customer Token,
+                your order will be dispatched. The token
+                amount will be deducted from the total
+                payable amount when you receive your parcel. 📦
+            </strong>
 
         </div>
 
-
-
-        <!-- =================================================
-             SEND
-             ================================================= -->
 
         <button
             type="button"
@@ -1022,41 +729,21 @@ textarea:focus {
 
         </div>
 
-
     </div>
 
 </div>
 
 
-
 <script>
-
-/* =====================================================
-   ACTIVE PRODUCT
-   ===================================================== */
 
 let activeSkuCode = "LA-001";
 
 
 /* =====================================================
-   YOUR SELLER NUMBERS
-   =====================================================
-
-   Both currently use the number from the working
-   Libas Atelier test.
-
-   WhatsApp route:
-   Customer's WhatsApp -> this WhatsApp Business number
-
-   SMS route:
-   Customer's SMS composer -> this mobile number
-
-   IMPORTANT:
-   Do not put + or the leading 0 in these values.
+   SELLER NUMBERS
    ===================================================== */
 
 const STORE_WHATSAPP_LINE = "923038710292";
-
 const STORE_SMS_LINE = "923038710292";
 
 
@@ -1074,7 +761,7 @@ function formatRupees(value) {
 
 
 /* =====================================================
-   CREATE LA SKU
+   CREATE SKU
    ===================================================== */
 
 function createSku(designParam) {
@@ -1082,14 +769,12 @@ function createSku(designParam) {
     const match =
         designParam.match(/(\d+)$/);
 
-
     if (match) {
 
         return "LA-" +
             match[1].padStart(3, "0");
 
     }
-
 
     return "LA-" +
         designParam
@@ -1116,7 +801,7 @@ function storageKey(type) {
 
 
 /* =====================================================
-   LOAD SAVED SETTINGS
+   LOAD SETTINGS
    ===================================================== */
 
 function loadSavedPricing() {
@@ -1126,18 +811,15 @@ function loadSavedPricing() {
             storageKey("price_per_meter")
         );
 
-
     const savedDelivery =
         localStorage.getItem(
             "libas_delivery_charge"
         );
 
-
     const savedToken =
         localStorage.getItem(
             "libas_customer_token"
         );
-
 
     document.getElementById(
         "pricePerMeter"
@@ -1146,7 +828,6 @@ function loadSavedPricing() {
             ? savedPrice
             : "";
 
-
     document.getElementById(
         "deliveryCharge"
     ).value =
@@ -1154,14 +835,12 @@ function loadSavedPricing() {
             ? savedDelivery
             : "";
 
-
     document.getElementById(
         "customerToken"
     ).value =
         savedToken !== null
             ? savedToken
             : "";
-
 
     updateOrderSummary();
 
@@ -1179,56 +858,43 @@ function savePricingSettings() {
             "pricePerMeter"
         ).value || "0";
 
-
     const delivery =
         document.getElementById(
             "deliveryCharge"
         ).value || "0";
-
 
     const token =
         document.getElementById(
             "customerToken"
         ).value || "0";
 
-
     localStorage.setItem(
         storageKey("price_per_meter"),
         price
     );
-
 
     localStorage.setItem(
         "libas_delivery_charge",
         delivery
     );
 
-
     localStorage.setItem(
         "libas_customer_token",
         token
     );
 
-
     updateOrderSummary();
-
 
     const status =
         document.getElementById(
             "savedStatus"
         );
 
-
-    status.style.display =
-        "block";
-
+    status.style.display = "block";
 
     setTimeout(
         function() {
-
-            status.style.display =
-                "none";
-
+            status.style.display = "none";
         },
         2200
     );
@@ -1249,14 +915,12 @@ function updateOrderSummary() {
             ).value || 0
         );
 
-
     const meters =
         Number(
             document.getElementById(
                 "fabricMeters"
             ).value || 0
         );
-
 
     const delivery =
         Number(
@@ -1265,7 +929,6 @@ function updateOrderSummary() {
             ).value || 0
         );
 
-
     const token =
         Number(
             document.getElementById(
@@ -1273,71 +936,49 @@ function updateOrderSummary() {
             ).value || 0
         );
 
-
     const productPrice =
-        pricePerMeter *
-        meters;
-
+        pricePerMeter * meters;
 
     const grossTotal =
-        productPrice +
-        delivery;
-
+        productPrice + delivery;
 
     const netPayable =
         Math.max(
             0,
-            grossTotal -
-            token
+            grossTotal - token
         );
-
 
     document.getElementById(
         "summarySku"
     ).textContent =
         activeSkuCode;
 
-
     document.getElementById(
         "summaryProductPrice"
     ).textContent =
-        formatRupees(
-            productPrice
-        );
-
+        formatRupees(productPrice);
 
     document.getElementById(
         "summaryDelivery"
     ).textContent =
         "+ " +
-        formatRupees(
-            delivery
-        );
-
+        formatRupees(delivery);
 
     document.getElementById(
         "summaryGrossTotal"
     ).textContent =
-        formatRupees(
-            grossTotal
-        );
-
+        formatRupees(grossTotal);
 
     document.getElementById(
         "summaryToken"
     ).textContent =
         "− " +
-        formatRupees(
-            token
-        );
-
+        formatRupees(token);
 
     document.getElementById(
         "summaryNetPayable"
     ).textContent =
-        formatRupees(
-            netPayable
-        );
+        formatRupees(netPayable);
 
 }
 
@@ -1353,28 +994,23 @@ function loadProduct() {
             window.location.search
         );
 
-
     const designParam =
         params.get("design");
-
 
     const image =
         document.getElementById(
             "displayImage"
         );
 
-
     const label =
         document.getElementById(
             "itemLabel"
         );
 
-
     const canvas =
         document.getElementById(
             "canvasFrame"
         );
-
 
     if (designParam) {
 
@@ -1383,56 +1019,41 @@ function loadProduct() {
                 .trim()
                 .toLowerCase();
 
-
         activeSkuCode =
-            createSku(
-                cleanDesign
-            );
-
+            createSku(cleanDesign);
 
         image.src =
-            cleanDesign +
-            ".jpg";
-
+            cleanDesign + ".jpg";
 
         image.style.display =
             "block";
 
-
         image.style.objectFit =
             "cover";
 
-
         canvas.style.backgroundColor =
             "#ffffff";
-
 
         label.innerHTML =
             "🧵 CODE: <b>" +
             activeSkuCode +
             "</b>";
 
-    }
-
-    else {
+    } else {
 
         activeSkuCode =
             "LA-001";
 
-
         image.style.display =
             "none";
 
-
         canvas.style.backgroundColor =
             "#1a1a1a";
-
 
         label.innerHTML =
             "🧵 CODE: <b>LA-001</b>";
 
     }
-
 
     loadSavedPricing();
 
@@ -1440,7 +1061,7 @@ function loadProduct() {
 
 
 /* =====================================================
-   OPEN PROFORMA
+   SHOW / HIDE PROFORMA
    ===================================================== */
 
 function showProforma() {
@@ -1449,18 +1070,12 @@ function showProforma() {
 
     updateOrderSummary();
 
-
     document.getElementById(
         "orderModal"
     ).style.display =
         "flex";
 
 }
-
-
-/* =====================================================
-   CLOSE PROFORMA
-   ===================================================== */
 
 function hideProforma() {
 
@@ -1473,7 +1088,7 @@ function hideProforma() {
 
 
 /* =====================================================
-   SEND ORDER
+   DISPATCH ORDER
    ===================================================== */
 
 function dispatchOrder() {
@@ -1483,24 +1098,20 @@ function dispatchOrder() {
             "clientName"
         ).value.trim();
 
-
     const mobile =
         document.getElementById(
             "clientMobile"
         ).value.trim();
-
 
     const whatsapp =
         document.getElementById(
             "clientWhatsApp"
         ).value.trim();
 
-
     const address =
         document.getElementById(
             "clientAddress"
         ).value.trim();
-
 
     const meters =
         Number(
@@ -1509,12 +1120,10 @@ function dispatchOrder() {
             ).value || 0
         );
 
-
     const notes =
         document.getElementById(
             "orderNotes"
         ).value.trim();
-
 
     const pricePerMeter =
         Number(
@@ -1523,14 +1132,12 @@ function dispatchOrder() {
             ).value || 0
         );
 
-
     const delivery =
         Number(
             document.getElementById(
                 "deliveryCharge"
             ).value || 0
         );
-
 
     const token =
         Number(
@@ -1540,9 +1147,7 @@ function dispatchOrder() {
         );
 
 
-    /* =================================================
-       VALIDATION
-       ================================================= */
+    /* VALIDATION */
 
     if (!name) {
 
@@ -1551,9 +1156,7 @@ function dispatchOrder() {
         );
 
         return;
-
     }
-
 
     if (!mobile) {
 
@@ -1562,9 +1165,7 @@ function dispatchOrder() {
         );
 
         return;
-
     }
-
 
     if (!address) {
 
@@ -1573,9 +1174,7 @@ function dispatchOrder() {
         );
 
         return;
-
     }
-
 
     if (!meters || meters <= 0) {
 
@@ -1584,9 +1183,7 @@ function dispatchOrder() {
         );
 
         return;
-
     }
-
 
     if (!pricePerMeter || pricePerMeter <= 0) {
 
@@ -1595,47 +1192,35 @@ function dispatchOrder() {
         );
 
         return;
-
     }
 
 
-    /* =================================================
-       CALCULATION
-       ================================================= */
+    /* CALCULATION */
 
     const productPrice =
-        pricePerMeter *
-        meters;
-
+        pricePerMeter * meters;
 
     const grossTotal =
-        productPrice +
-        delivery;
-
+        productPrice + delivery;
 
     const netPayable =
         Math.max(
             0,
-            grossTotal -
-            token
+            grossTotal - token
         );
 
 
-    /* =================================================
-       SAVE SETTINGS
-       ================================================= */
+    /* SAVE SETTINGS */
 
     localStorage.setItem(
         storageKey("price_per_meter"),
         String(pricePerMeter)
     );
 
-
     localStorage.setItem(
         "libas_delivery_charge",
         String(delivery)
     );
-
 
     localStorage.setItem(
         "libas_customer_token",
@@ -1644,37 +1229,10 @@ function dispatchOrder() {
 
 
     /* =================================================
-       DETERMINE COMMUNICATION ROUTE
-       =================================================
+       FINAL ORDER MESSAGE
 
-       WhatsApp number present:
-       -> WhatsApp
-
-       WhatsApp number blank:
-       -> SMS composer
-       ================================================= */
-
-
-    let communicationRoute;
-
-
-    if (whatsapp) {
-
-        communicationRoute =
-            "WHATSAPP";
-
-    }
-
-    else {
-
-        communicationRoute =
-            "SMS";
-
-    }
-
-
-    /* =================================================
-       ORDER MESSAGE
+       The final token instruction is deliberately
+       surrounded by WhatsApp's bold markdown markers.
        ================================================= */
 
     const orderMessage =
@@ -1743,103 +1301,55 @@ function dispatchOrder() {
         formatRupees(
             netPayable
         ) +
+
         "\n\n" +
 
-        "⭐ *On payment of the Serious Customer Token, " +
-        "your order will be dispatched. The token amount " +
-        "will be deducted from the total payable amount " +
-        "when you receive your parcel. 📦*";
+        "⭐ *IMPORTANT: On payment of the Serious Customer Token, " +
+        "your order will be dispatched. The token amount will be " +
+        "deducted from the total payable amount when you receive " +
+        "your parcel. 📦*";
 
 
     /* =================================================
        WHATSAPP ROUTE
        ================================================= */
 
-    if (
-        communicationRoute ===
-        "WHATSAPP"
-    ) {
-
+    if (whatsapp) {
 
         const whatsappURL =
-
             "https://api.whatsapp.com/send" +
-
             "?phone=" +
-
             STORE_WHATSAPP_LINE +
-
             "&text=" +
-
             encodeURIComponent(
                 orderMessage
             );
 
-
-        /*
-         * Direct navigation.
-         * This is the route that worked in your
-         * real Chrome/GitHub test.
-         */
-
         window.location.href =
             whatsappURL;
 
-
         return;
-
     }
 
 
     /* =================================================
        SMS ROUTE
-       =================================================
-
-       IMPORTANT:
-       This opens the customer's SMS composer.
-
-       It does NOT silently send the SMS.
-       The customer must press SEND.
-
        ================================================= */
 
-    if (
-        communicationRoute ===
-        "SMS"
-    ) {
+    const smsBody =
+        "LIBAS ATELIER ORDER\n\n" +
+        orderMessage;
 
+    const smsURL =
+        "sms:" +
+        STORE_SMS_LINE +
+        "?body=" +
+        encodeURIComponent(
+            smsBody
+        );
 
-        const smsBody =
-
-            "LIBAS ATELIER ORDER\n\n" +
-
-            orderMessage;
-
-
-        const smsURL =
-
-            "sms:" +
-
-            STORE_SMS_LINE +
-
-            "?body=" +
-
-            encodeURIComponent(
-                smsBody
-            );
-
-
-        /*
-         * Opens the phone's SMS composer.
-         */
-
-        window.location.href =
-            smsURL;
-
-
-        return;
-
-    }
+    window.location.href =
+        smsURL;
 
 }
 
@@ -1852,19 +1362,12 @@ document.addEventListener(
     "input",
     function(event) {
 
-
         const calculationFields = [
-
             "pricePerMeter",
-
             "fabricMeters",
-
             "deliveryCharge",
-
             "customerToken"
-
         ];
-
 
         if (
             calculationFields.includes(
