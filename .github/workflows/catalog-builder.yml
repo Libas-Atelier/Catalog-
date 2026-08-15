@@ -49,8 +49,15 @@ jobs:
 
           echo "TOTAL PRODUCTS DETECTED: $found"
 
-      - name: Save generated catalog
+            - name: Save generated catalog
+        run: |
+          mkdir -p catalog-output
+          cp catalog.md catalog-output/
+          cp LA-*.jpg catalog-output/ 2>/dev/null || true
+          cp LA-*.jpeg catalog-output/ 2>/dev/null || true
+
+      - name: Upload catalog package
         uses: actions/upload-artifact@v4
         with:
           name: show-and-sell-catalog
-          path: generated-catalog/
+          path: catalog-output/
