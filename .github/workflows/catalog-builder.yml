@@ -1,0 +1,56 @@
+name: Show & Sell Catalog Builder
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-catalog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repository files
+        uses: actions/checkout@v6
+
+      - name: Build product catalog
+        shell: bash
+        run: |
+          set -e
+
+          mkdir -p generated-catalog
+
+          echo "# LIBAS ATELIER" > generated-catalog/catalog.md
+          echo "" >> generated-catalog/catalog.md
+          echo "## Luxury Catalog Hub" >> generated-catalog/catalog.md
+          echo "" >> generated-catalog/catalog.md
+
+          found=0
+
+          for file in *.{jpg,jpeg,JPG,JPEG}; do
+            [ -f "$file" ] || continue
+
+            sku="${file%.*}"
+
+            echo "## $sku" >> generated-catalog/catalog.md
+            echo "" >> generated-catalog/catalog.md
+            echo "![${sku}](${file})" >> generated-catalog/catalog.md
+            echo "" >> generated-catalog/catalog.md
+            echo "---" >> generated-catalog/catalog.md
+            echo "" >> generated-catalog/catalog.md
+
+            echo "Found product: $sku"
+            found=$((found + 1))
+          done
+
+          echo "" >> generated-catalog/catalog.md
+          echo "**Products detected: $found**" >> generated-catalog/catalog.md
+
+          echo "TOTAL PRODUCTS DETECTED: $found"
+
+      - name: Save generated catalog
+        uses: actions/upload-artifact@v4
+        with:
+          name: show-and-sell-catalog
+          path: generated-catalog/
