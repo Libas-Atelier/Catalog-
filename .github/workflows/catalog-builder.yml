@@ -19,11 +19,8 @@ jobs:
         run: |
           set -e
 
-          rm -rf generated-catalog
-          rm -rf catalog-output
-
-          mkdir -p generated-catalog
-          mkdir -p catalog-output
+          rm -rf generated-catalog catalog-output
+          mkdir -p generated-catalog catalog-output
 
           cat > generated-catalog/catalog.html <<'HTML'
           <!DOCTYPE html>
@@ -32,11 +29,8 @@ jobs:
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>LIBAS ATELIER — Luxury Catalog Hub</title>
-
             <style>
-              * {
-                box-sizing: border-box;
-              }
+              * { box-sizing: border-box; }
 
               body {
                 margin: 0;
@@ -98,68 +92,61 @@ jobs:
 
           <body>
             <div class="container">
-
               <h1>LIBAS ATELIER</h1>
-
-              <div class="subtitle">
-                Luxury Catalog Hub
-              </div>
+              <div class="subtitle">Luxury Catalog Hub</div>
           HTML
 
           found=0
 
-          # Build a sorted list of all supported product images.
-          find . -maxdepth 1 -type f \
-            \( -iname 'LA-*.jpg' -o \
-               -iname 'LA-*.jpeg' -o \
-               -iname 'LA-*.png' -o \
-               -iname 'LA-*.webp' \) \
-            -printf '%f\n' |
-            sort -V |
-            while IFS= read -r file; do
+          mapfile -t files < <(
+            find . -maxdepth 1 -type f \
+              \( -iname 'LA-*.jpg' -o \
+                 -iname 'LA-*.jpeg' -o \
+                 -iname 'LA-*.png' -o \
+                 -iname 'LA-*.webp' \) \
+              -printf '%f\n' |
+            sort -V
+          )
 
-              [ -f "$file" ] || continue
+          for file in "${files[@]}"; do
 
-              sku="${file%.*}"
+            [ -f "$file" ] || continue
 
-              case "${file##*.}" in
-                jpg|JPG|jpeg|JPEG)
-                  mime="image/jpeg"
-                  ;;
-                png|PNG)
-                  mime="image/png"
-                  ;;
-                webp|WEBP)
-                  mime="image/webp"
-                  ;;
-                *)
-                  continue
-                  ;;
-              esac
+            sku="${file%.*}"
 
-              # IMPORTANT:
-              # -w 0 prevents line breaks in Base64.
-              # This makes the data URL valid inside HTML.
-              image_base64="$(base64 -w 0 "$file")"
+            case "${file##*.}" in
+              jpg|JPG|jpeg|JPEG)
+                mime="image/jpeg"
+                ;;
+              png|PNG)
+                mime="image/png"
+                ;;
+              webp|WEBP)
+                mime="image/webp"
+                ;;
+              *)
+                continue
+                ;;
+            esac
 
-              cat >> generated-catalog/catalog.html <<HTML
+            image_base64="$(base64 -w 0 "$file")"
+
+            cat >> generated-catalog/catalog.html <<HTML
               <section class="product">
                 <h2>${sku}</h2>
                 <img src="data:${mime};base64,${image_base64}" alt="${sku}">
               </section>
           HTML
 
-              cp "$file" generated-catalog/
+            cp "$file" generated-catalog/
+            found=$((found + 1))
 
-              found=$((found + 1))
-
-            done
+          done
 
           cat >> generated-catalog/catalog.html <<HTML
               <div class="count">
                 Products detected: ${found}
               </div>
-
             </div>
           </body>
           </html>
@@ -167,13 +154,10 @@ jobs:
 
           cp generated-catalog/catalog.html catalog-output/
 
-          # Keep original product images in the downloadable package too.
-          find generated-catalog -maxdepth 1 -type f \
-            \( -iname 'LA-*.jpg' -o \
-               -iname 'LA-*.jpeg' -o \
-               -iname 'LA-*.png' -o \
-               -iname 'LA-*.webp' \) \
-            -exec cp {} catalog-output/ \;
+          for file in generated-catalog/LA-*; do
+            [ -f "$file" ] || continue
+            cp "$file" catalog-output/
+          done
 
           echo "TOTAL PRODUCTS DETECTED: $found"
 
