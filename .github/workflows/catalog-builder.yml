@@ -108,21 +108,52 @@ jobs:
 
           found=0
 
-          for file in LA-*.jpg LA-*.jpeg LA-*.png LA-*.webp; do
-            [ -f "$file" ] || continue
+          # Build a sorted list of all supported product images.
+          find . -maxdepth 1 -type f \
+            \( -iname 'LA-*.jpg' -o \
+               -iname 'LA-*.jpeg' -o \
+               -iname 'LA-*.png' -o \
+               -iname 'LA-*.webp' \) \
+            -printf '%f\n' |
+            sort -V |
+            while IFS= read -r file; do
 
-            sku="${file%.*}"
+              [ -f "$file" ] || continue
 
-            cat >> generated-catalog/catalog.html <<HTML
+              sku="${file%.*}"
+
+              case "${file##*.}" in
+                jpg|JPG|jpeg|JPEG)
+                  mime="image/jpeg"
+                  ;;
+                png|PNG)
+                  mime="image/png"
+                  ;;
+                webp|WEBP)
+                  mime="image/webp"
+                  ;;
+                *)
+                  continue
+                  ;;
+              esac
+
+              # IMPORTANT:
+              # -w 0 prevents line breaks in Base64.
+              # This makes the data URL valid inside HTML.
+              image_base64="$(base64 -w 0 "$file")"
+
+              cat >> generated-catalog/catalog.html <<HTML
               <section class="product">
                 <h2>${sku}</h2>
-                <img src="${file}" alt="${sku}">
+                <img src="data:${mime};base64,${image_base64}" alt="${sku}">
               </section>
           HTML
 
-            cp "$file" generated-catalog/
-            found=$((found + 1))
-          done
+              cp "$file" generated-catalog/
+
+              found=$((found + 1))
+
+            done
 
           cat >> generated-catalog/catalog.html <<HTML
               <div class="count">
@@ -136,10 +167,13 @@ jobs:
 
           cp generated-catalog/catalog.html catalog-output/
 
-          for file in generated-catalog/LA-*.jpg generated-catalog/LA-*.jpeg generated-catalog/LA-*.png generated-catalog/LA-*.webp; do
-            [ -f "$file" ] || continue
-            cp "$file" catalog-output/
-          done
+          # Keep original product images in the downloadable package too.
+          find generated-catalog -maxdepth 1 -type f \
+            \( -iname 'LA-*.jpg' -o \
+               -iname 'LA-*.jpeg' -o \
+               -iname 'LA-*.png' -o \
+               -iname 'LA-*.webp' \) \
+            -exec cp {} catalog-output/ \;
 
           echo "TOTAL PRODUCTS DETECTED: $found"
 
