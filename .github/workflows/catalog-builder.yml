@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Get repository files
         uses: actions/checkout@v4
 
@@ -20,12 +19,13 @@ jobs:
         run: |
           set -e
 
+          rm -rf generated-catalog
           rm -rf catalog-output
+
+          mkdir -p generated-catalog
           mkdir -p catalog-output
 
-          found=0
-
-          cat > catalog-output/catalog.html <<'HTML'
+          cat > generated-catalog/catalog.html <<'HTML'
           <!DOCTYPE html>
           <html lang="en">
           <head>
@@ -40,38 +40,42 @@ jobs:
 
               body {
                 margin: 0;
-                padding: 24px;
+                padding: 0;
                 background: #111;
                 color: #fff;
                 font-family: Arial, Helvetica, sans-serif;
               }
 
               .container {
+                width: 100%;
                 max-width: 1100px;
-                margin: auto;
+                margin: 0 auto;
+                padding: 35px 20px 60px;
               }
 
               h1 {
-                font-size: clamp(36px, 7vw, 72px);
-                margin: 0 0 10px;
+                margin: 0 0 12px;
+                font-size: clamp(38px, 7vw, 76px);
+                font-weight: 800;
                 letter-spacing: 2px;
               }
 
               .subtitle {
-                font-size: clamp(24px, 4vw, 42px);
-                font-weight: 700;
                 margin-bottom: 45px;
+                font-size: clamp(24px, 4vw, 42px);
+                font-weight: 600;
               }
 
               .product {
-                margin-bottom: 50px;
-                padding-bottom: 40px;
+                margin-bottom: 55px;
+                padding-bottom: 45px;
                 border-bottom: 2px solid #444;
               }
 
               .product h2 {
-                font-size: clamp(28px, 5vw, 48px);
-                margin: 0 0 20px;
+                margin: 0 0 25px;
+                font-size: clamp(30px, 5vw, 54px);
+                font-weight: 800;
               }
 
               .product img {
@@ -79,14 +83,15 @@ jobs:
                 width: 100%;
                 max-width: 900px;
                 height: auto;
-                margin: auto;
+                margin: 0 auto;
                 border-radius: 12px;
+                background: #222;
               }
 
               .count {
-                font-size: 24px;
-                font-weight: 700;
                 margin-top: 35px;
+                font-size: clamp(22px, 4vw, 34px);
+                font-weight: 700;
               }
             </style>
           </head>
@@ -101,49 +106,40 @@ jobs:
               </div>
           HTML
 
-          for file in LA-*.jpg LA-*.jpeg LA-*.JPG LA-*.JPEG; do
+          found=0
+
+          for file in LA-*.jpg LA-*.jpeg LA-*.png LA-*.webp; do
             [ -f "$file" ] || continue
 
             sku="${file%.*}"
 
-            case "${file##*.}" in
-              jpg|JPG)
-                mime="image/jpeg"
-                ;;
-              jpeg|JPEG)
-                mime="image/jpeg"
-                ;;
-              *)
-                continue
-                ;;
-            esac
+            cat >> generated-catalog/catalog.html <<HTML
+              <section class="product">
+                <h2>${sku}</h2>
+                <img src="${file}" alt="${sku}">
+              </section>
+          HTML
 
-            echo "Found product: $sku"
-
-            {
-              echo "<section class=\"product\">"
-              echo "<h2>$sku</h2>"
-              echo "<img src=\"data:$mime;base64,"
-              base64 -w 0 "$file"
-              echo "\" alt=\"$sku\">"
-              echo "</section>"
-            } >> catalog-output/catalog.html
-
-            cp "$file" catalog-output/
-
+            cp "$file" generated-catalog/
             found=$((found + 1))
           done
 
-          cat >> catalog-output/catalog.html <<HTML
-
+          cat >> generated-catalog/catalog.html <<HTML
               <div class="count">
-                Products detected: $found
+                Products detected: ${found}
               </div>
 
             </div>
           </body>
           </html>
           HTML
+
+          cp generated-catalog/catalog.html catalog-output/
+
+          for file in generated-catalog/LA-*.jpg generated-catalog/LA-*.jpeg generated-catalog/LA-*.png generated-catalog/LA-*.webp; do
+            [ -f "$file" ] || continue
+            cp "$file" catalog-output/
+          done
 
           echo "TOTAL PRODUCTS DETECTED: $found"
 
