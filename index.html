@@ -791,7 +791,24 @@ textarea:focus {
 
 <script>
 
-let activeSkuCode = "LA-001";
+let activeSkuCode = "LA-0001";
+
+/* =====================================================
+   LIBAS ATELIER PRODUCT MAP
+   One product is shown at a time.
+   The WhatsApp catalog URL is kept as the product reference.
+   Product photographs are served from the same GitHub/Cloudflare site.
+   ===================================================== */
+const LIBAS_PRODUCTS = {
+    "LA-0001": {
+        image: "LA-0001.jpg",
+        whatsappUrl: "https://wa.me/p/28950433141227515/923038710292"
+    },
+    "LA-0003": {
+        image: "LA-0003.jpg",
+        whatsappUrl: "https://wa.me/p/27820976960904596/923038710292"
+    }
+};
 
 
 /* =====================================================
@@ -1051,8 +1068,31 @@ function loadProduct() {
             window.location.search
         );
 
-    const designParam =
+    /* Accept the new product URL: ?product=LA-0001
+       Keep the old ?design=... route working as a fallback. */
+    const productParam =
+        params.get("product");
+
+    const legacyDesignParam =
         params.get("design");
+
+    let requestedCode =
+        productParam ||
+        legacyDesignParam ||
+        "LA-0001";
+
+    requestedCode =
+        requestedCode
+            .trim()
+            .toUpperCase();
+
+    /* Only one of the two configured products can be active. */
+    if (!LIBAS_PRODUCTS[requestedCode]) {
+        requestedCode = "LA-0001";
+    }
+
+    const product =
+        LIBAS_PRODUCTS[requestedCode];
 
     const image =
         document.getElementById(
@@ -1069,48 +1109,20 @@ function loadProduct() {
             "canvasFrame"
         );
 
-    if (designParam) {
+    activeSkuCode =
+        requestedCode;
 
-        const cleanDesign =
-            designParam
-                .trim()
-                .toLowerCase();
+    /* The file names are exactly the product codes supplied
+       in the GitHub repository. */
+    image.src = product.image;
+    image.style.display = "block";
+    image.style.objectFit = "cover";
+    canvas.style.backgroundColor = "#ffffff";
 
-        activeSkuCode =
-            createSku(cleanDesign);
-
-        image.src =
-            cleanDesign + ".jpg";
-
-        image.style.display =
-            "block";
-
-        image.style.objectFit =
-            "cover";
-
-        canvas.style.backgroundColor =
-            "#ffffff";
-
-        label.innerHTML =
-            "🧵 CODE: <b>" +
-            activeSkuCode +
-            "</b>";
-
-    } else {
-
-        activeSkuCode =
-            "LA-001";
-
-        image.style.display =
-            "none";
-
-        canvas.style.backgroundColor =
-            "#1a1a1a";
-
-        label.innerHTML =
-            "🧵 CODE: <b>LA-001</b>";
-
-    }
+    label.innerHTML =
+        "🧵 CODE: <b>" +
+        activeSkuCode +
+        "</b>";
 
     loadSavedPricing();
 
