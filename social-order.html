@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LIBAS ATELIER — Social Order Hub</title>
+<style>
+:root{--bg:#0d0d0d;--card:#181818;--line:#303030;--gold:#d4af37;--white:#fff;--green:#25d366;--red:#ff4757}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Segoe UI,sans-serif;padding:18px}.wrap{max-width:460px;margin:auto}.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 15px 40px #0008}.brand{text-align:center}.brand h1{margin:0;letter-spacing:3px;font-size:28px}.brand p{color:var(--gold);font-size:11px;letter-spacing:3px;font-weight:700}.social-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}.social-grid a,.primary,.secondary{display:block;text-decoration:none;text-align:center;padding:14px;border-radius:12px;font-weight:800;cursor:pointer}.social-grid a{border:1px solid var(--line);color:#fff;background:#111}.catalog{display:block;text-align:center;text-decoration:none;color:#111;background:var(--gold);padding:15px;border-radius:12px;font-weight:900;margin-bottom:18px}.product{border:1px solid var(--line);border-radius:18px;padding:14px}.product img{width:100%;height:330px;object-fit:cover;border-radius:13px;background:#fff}.code{text-align:center;font-weight:900;margin:12px 0}.primary{width:100%;border:0;color:#fff;background:var(--red);font-size:15px}.modal{display:none;position:fixed;inset:0;background:#000d;padding:15px;overflow:auto;z-index:10}.formcard{max-width:460px;margin:20px auto;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}.formcard h2{margin-top:0}.note{font-size:11px;color:#aaa;line-height:1.5}.field{margin:13px 0}.field label{display:block;color:var(--gold);font-size:12px;font-weight:800;margin-bottom:6px}.field input,.field textarea{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:#101010;color:#fff;font-size:14px}.field textarea{min-height:80px;resize:vertical}.summary{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin:16px 0;line-height:1.7;font-size:13px}.actions{display:grid;gap:10px}.whatsapp{background:var(--green);color:#fff;border:0}.call{background:#fff;color:#111;border:0}.close{background:none;color:var(--gold);border:0;width:100%;padding:10px;cursor:pointer}.result{display:none;margin-top:16px;padding:14px;border:1px solid #2d6a3d;border-radius:12px;background:#102016}.small{font-size:10px;color:#888;margin-top:14px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap"><main class="card">
+<div class="brand"><h1>LIBAS ATELIER</h1><p>SOCIAL ORDER HUB</p></div>
+<div class="social-grid">
+<a id="instagram" href="#" target="_blank" rel="noopener">Instagram</a>
+<a id="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+<a id="tiktok" href="#" target="_blank" rel="noopener">TikTok</a>
+<a id="youtube" href="#" target="_blank" rel="noopener">YouTube</a>
+</div>
+<a class="catalog" href="./index.html">OPEN FULL CATALOG</a>
+<section class="product">
+<img src="./LA-0001.jpg" alt="Libas Atelier design LA-0001">
+<div class="code">DESIGN CODE: LA-0001</div>
+<button class="primary" type="button" onclick="openOrder()">ORDER THIS DESIGN</button>
+</section>
+<p class="small">Use this page as the single link in your social-media bios. Social visitors arrive here first, then move directly into the catalog and order flow.</p>
+</main></div>
+
+<div id="modal" class="modal"><section class="formcard">
+<h2>LIBAS ATELIER ORDER</h2>
+<p class="note">Fill in the buyer's details. After submission, the page prepares the complete order message for WhatsApp and the phone call action.</p>
+<div class="field"><label>FULL NAME *</label><input id="name" required autocomplete="name"></div>
+<div class="field"><label>MOBILE NUMBER *</label><input id="mobile" type="tel" required autocomplete="tel" placeholder="03001234567"></div>
+<div class="field"><label>WHATSAPP NUMBER</label><input id="wa" type="tel" autocomplete="tel" placeholder="Leave blank if same as mobile"></div>
+<div class="field"><label>DELIVERY ADDRESS *</label><textarea id="address" required autocomplete="street-address"></textarea></div>
+<div class="field"><label>FABRIC QUANTITY (METERS) *</label><input id="meters" type="number" min="0.1" step="0.1" required placeholder="3.5"></div>
+<div class="field"><label>ADDITIONAL REQUIREMENTS</label><textarea id="notes" placeholder="Size, color, stitching, or other requirements"></textarea></div>
+<div class="summary" id="summary">Design: LA-0001</div>
+<div class="actions">
+<button class="primary whatsapp" type="button" onclick="prepareOrder()">SUBMIT & OPEN WHATSAPP</button>
+<button class="secondary call" type="button" onclick="callBusiness()">CALL LIBAS ATELIER</button>
+</div>
+<div id="result" class="result"><b>Order prepared.</b><div class="note">If your browser blocks the first action, use the WhatsApp button again. The phone button opens the device dialer where supported.</div></div>
+<button class="close" type="button" onclick="closeOrder()">CLOSE</button>
+<p class="small">Important: a website cannot silently write into a customer's WhatsApp or dialer. It can open WhatsApp with a prefilled message and open the phone dialer; the customer still confirms the send/call in their device.</p>
+</section></div>
+<script>
+// ===== LIBAS ATELIER SETTINGS =====
+// Replace these values with your real social profiles and business phone number.
+const CONFIG={
+  businessWhatsApp:'923001234567',
+  businessPhone:'+923001234567',
+  social:{
+    instagram:'https://www.instagram.com/',
+    facebook:'https://www.facebook.com/',
+    tiktok:'https://www.tiktok.com/',
+    youtube:'https://www.youtube.com/'
+  },
+  designCode:'LA-0001'
+};
+
+for(const [id,url] of Object.entries(CONFIG.social))document.getElementById(id).href=url;
+function openOrder(){document.getElementById('modal').style.display='block';document.body.style.overflow='hidden';updateSummary()}
+function closeOrder(){document.getElementById('modal').style.display='none';document.body.style.overflow=''}
+function val(id){return document.getElementById(id).value.trim()}
+function updateSummary(){document.getElementById('summary').innerHTML='<b>Design:</b> '+CONFIG.designCode+'<br><b>Fabric:</b> '+(val('meters')||'—')+' meters'}
+['name','mobile','wa','address','meters','notes'].forEach(id=>document.getElementById(id).addEventListener('input',updateSummary));
+function cleanPhone(s){return s.replace(/[^\d+]/g,'').replace(/^00/,'+').replace(/^0/,'+92')}
+function makeMessage(){
+ const name=val('name'),mobile=val('mobile'),wa=val('wa')||mobile,address=val('address'),meters=val('meters'),notes=val('notes')||'None';
+ return `*LIBAS ATELIER ORDER*\n\nDesign Code: ${CONFIG.designCode}\nCustomer: ${name}\nMobile: ${mobile}\nWhatsApp: ${wa}\nFabric: ${meters} meters\nDelivery Address: ${address}\nAdditional Requirements: ${notes}`;
+}
+function valid(){
+ if(!val('name')||!val('mobile')||!val('address')||!val('meters')){alert('Please complete all required fields.');return false}
+ if(Number(val('meters'))<=0){alert('Fabric quantity must be greater than zero.');return false}
+ return true;
+}
+function prepareOrder(){
+ if(!valid())return;
+ const text=encodeURIComponent(makeMessage());
+ const url=`https://wa.me/${CONFIG.businessWhatsApp}?text=${text}`;
+ document.getElementById('result').style.display='block';
+ window.location.href=url;
+}
+function callBusiness(){
+ if(!valid())return;
+ window.location.href='tel:'+CONFIG.businessPhone;
+}
+</script>
+</body>
+</html>
